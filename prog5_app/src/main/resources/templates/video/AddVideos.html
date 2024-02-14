@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Videos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<!-- Navbar Fragment -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <form th:action="create" th:method="post" th:object="${getPage}">
+
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" th:field="*{title}" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="views" class="form-label">Views:</label>
+            <input type="number" th:field="*{views}" id="views" name="views" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="link" class="form-label">Link:</label>
+            <input type="text" th:field="*{link}" id="link" name="link" class="form-control"
+                   required>
+        </div>
+        <div class="mb-3">
+            <label for="link" class="form-label">Genre:</label>
+            <select name="genre">
+                <option th:each="genre : ${T(kdg.be.prog5_app.domain.VideoGenre).values()}"
+                        th:value="${genre}" th:text="${genre.displayValue}" th:field="*{genre}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="channels" class="form-label">Choose channel:</label>
+            <select name="channels" id="channels">
+                <option th:each="channel : ${channels}"
+                        th:value="${channel}" th:text="${channel.name}"></option>
+            </select>
+        </div>
+        <p>No existing channel? Add channel first.</p>
+
+        <button type="submit" class="btn btn-outline-dark">Add</button>
+
+    </form>
+</div>
+<div th:if="${message}" class="alert alert-success alert-dismissible fade show container mt-3" role="alert">
+    <p th:text="${message}"></p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div th:if="${message2}" class="alert alert-danger alert-dismissible fade show container mt-3" role="alert">
+    <p th:text="${message2}"></p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
