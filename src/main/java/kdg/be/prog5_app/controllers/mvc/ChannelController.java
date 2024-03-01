@@ -1,4 +1,4 @@
-package kdg.be.prog5_app.controllers;
+package kdg.be.prog5_app.controllers.mvc;
 
 import kdg.be.prog5_app.domain.Channel;
 import kdg.be.prog5_app.services.ChannelService;
@@ -16,7 +16,7 @@ import jakarta.validation.Valid;
 public class ChannelController {
     private final ChannelService channelService;
 
-    @Autowired
+//    @Autowired
     public ChannelController(ChannelService channelService) {
         this.channelService = channelService;
     }

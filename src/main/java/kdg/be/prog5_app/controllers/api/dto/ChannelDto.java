@@ -1,33 +1,20 @@
-package kdg.be.prog5_app.domain;
+package kdg.be.prog5_app.controllers.api.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
-@Entity
-@Table(name = "channel")
-public class Channel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ChannelDto {
     private int id;
-
-    @Column(name = "name")
     private String name;
-    @Column(name = "date")
     private LocalDate date;
-    @Column(name = "subscribers")
     private int subscribers;
 
-    @OneToMany(mappedBy = "channel")
-    private List<ChannelVideo> videos;
-
-    public Channel() {
+    public ChannelDto() {
     }
 
-    public Channel(String name, LocalDate date, int subscribers) {
-//        this.id = id;
+    public ChannelDto(int id, String name, LocalDate date, int subscribers) {
+        this.id = id;
         this.name = name;
         this.date = date;
         this.subscribers = subscribers;
@@ -63,13 +50,5 @@ public class Channel {
 
     public void setSubscribers(int subscribers) {
         this.subscribers = subscribers;
-    }
-
-    public List<ChannelVideo> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(List<ChannelVideo> videos) {
-        this.videos = videos;
     }
 }

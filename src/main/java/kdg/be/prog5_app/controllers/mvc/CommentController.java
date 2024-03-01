@@ -1,4 +1,4 @@
-package kdg.be.prog5_app.controllers;
+package kdg.be.prog5_app.controllers.mvc;
 
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.domain.Comment;

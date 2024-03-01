@@ -19,6 +19,12 @@ public interface ChannelRepository extends JpaRepository<Channel, Long> {
     List<Channel> findByName(String name);
 
     Channel findById(long id);
+    @Query("""
+           select channel from Channel channel
+           left join fetch channel.videos
+           where channel.id = :channelId
+           """)
+    Optional<Channel> findByIdWithAssignments(long channelId);
 
     Channel save(Channel channel);
 

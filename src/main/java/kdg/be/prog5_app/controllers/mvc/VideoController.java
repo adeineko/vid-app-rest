@@ -1,4 +1,4 @@
-package kdg.be.prog5_app.controllers;
+package kdg.be.prog5_app.controllers.mvc;
 
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.domain.Video;
@@ -34,7 +34,7 @@ public class VideoController {
     @GetMapping("/add")
     public String getVideoPage(Model model) {
         model.addAttribute("getPage", new Video());
-        model.addAttribute("channels", channelService.showChannels());
+        model.addAttribute("channels", channelService.getChannels());
 //        model.addAttribute("addChannel", channelServiceJdbc.showChannels());
         return "video/AddVideos";
     }
@@ -42,14 +42,14 @@ public class VideoController {
     @PostMapping("create")
     public String addVideo(@Valid @ModelAttribute Video video, BindingResult errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("channels", channelService.showChannels());
+            model.addAttribute("channels", channelService.getChannels());
             model.addAttribute("getPage", new Video());
             model.addAttribute("message2", errors.getAllErrors().stream().findFirst().orElse(null).getDefaultMessage());
             return "video/AddVideos";
         }
         videoService.addVideo(video);
         // videoService.saveChannelId(video);
-        model.addAttribute("channels", channelService.showChannels());
+        model.addAttribute("channels", channelService.getChannels());
         model.addAttribute("getPage", new Video());
         model.addAttribute("message", "Video added!");
         return "video/AddVideos";

@@ -1,0 +1,15 @@
+###Homepage
+GET http://localhost:8080
+
+###API: retrieve 1 channel
+GET http://localhost:8080/api/channels/1
+
+###API: retrieve 1 channel (not found)
+GET http://localhost:8080/api/channels/90
+
+### API: delete a channel
+DELETE http://localhost:8080/api/channels/2
+
+### API: delete a channel (not found)
+DELETE http://localhost:8080/api/channels/90
+

@@ -20,7 +20,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
+    implementation ("com.fasterxml.jackson.dataformat:jackson-dataformat-xml")
+    implementation ("org.modelmapper:modelmapper:3.2.0")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
