@@ -12,6 +12,17 @@ async function toggleVideosTable() {
             {headers: {"Accept": "application/json"}});
         if (response.status === 200) {
             const videos = await response.json();
+            tableBody.innerHTML = '';
+            for (const video of videos) {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${video.id}</td>
+                        <td>${video.title}</td>
+                        <td>${video.views}</td>
+                    </tr>
+                `;
+            }
+            showVideosTable();
         }
     }
 }
@@ -31,4 +42,6 @@ function showVideosTable() {
         buttonWrapper.classList.add("dropup");
     }
 }
+
+toggleVideosButton.addEventListener('click', toggleVideosTable);
 

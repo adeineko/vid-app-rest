@@ -3,8 +3,6 @@ package kdg.be.prog5_app.controllers.api;
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
-import kdg.be.prog5_app.domain.Channel;
-import kdg.be.prog5_app.domain.Video;
 import kdg.be.prog5_app.services.ChannelService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +59,7 @@ public class ChannelsController {
                         video.getGenre()
                 )).toList();
     }
+
     @DeleteMapping("{id}")
     ResponseEntity<Void> deleteChannel(@PathVariable("id") long channelId) {
         if (channelService.removeChannel(channelId)) {

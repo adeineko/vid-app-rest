@@ -25,10 +25,6 @@ public class ChannelService {
         this.channelVideoRepository = channelVideoRepository;
     }
 
-//    public List<Channel> showChannels() {
-//        return channelRepository.showAllChannels();
-//    }
-
     public Channel addChannel(Channel channel) {
         return channelRepository.save(channel);
     }
@@ -37,13 +33,10 @@ public class ChannelService {
         return channelRepository.findById(id).orElse(null);
     }
 
-    public Channel deleteChannel(long id) {
-        return channelRepository.deleteById(id);
-    }
 
     @Transactional
     public boolean removeChannel(long channelId) {
-        var channel = channelRepository.findByIdWithAssignments(channelId);
+        var channel = channelRepository.findByIdWithVideos(channelId);
         if (channel.isEmpty()) {
             return false;
         }

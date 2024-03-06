@@ -13,3 +13,6 @@ DELETE http://localhost:8080/api/channels/2
 ### API: delete a channel (not found)
 DELETE http://localhost:8080/api/channels/90
 
+###API: retrieve videos of a channel
+GET http://localhost:8080/api/channels/1/videos
+

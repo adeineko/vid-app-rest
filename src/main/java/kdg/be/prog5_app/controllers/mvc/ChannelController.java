@@ -27,15 +27,8 @@ public class ChannelController {
         return "channel/Channels";
     }
 
-    @PostMapping("delete/{id}")
-    public String deleteChannel(@PathVariable(value = "id") Long id) {
-        channelService.deleteChannel(id);
-        return "redirect:/channels";
-    }
-
     @GetMapping("/{id}")
     public String getChannel(Model model, @PathVariable(value = "id") Long id) {
-        model.addAttribute("videos", channelService.findVideosByChannelId(id));
         model.addAttribute("channel", channelService.getChannel(id));
         return "channel/details";
     }
