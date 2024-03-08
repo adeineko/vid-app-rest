@@ -1,3 +1,6 @@
+INSERT INTO application_user(username, password)
+VALUES ('anna', '$2a$10$5YVfAzYw2gz0To69fzv88ui8iZL/IV7iwZBI33LPAf.kzWT80ZXMi');
+
 INSERT INTO channel(name, date, subscribers)
 VALUES ('Beyond Fireship', '2022-09-04', '329000'),
        ('Tech Acad', '2017-03-28', '75000');

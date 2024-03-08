@@ -7,7 +7,7 @@ for (const deleteButton of deleteButtons) {
 async function handleDelete(event) {
     const rowId = event.target.parentNode.parentNode.id;
     const channelId = parseInt(rowId.substring(rowId.indexOf('_') + 1));
-    console.log(channelId)
+    // console.log(channelId)
     const response = await fetch(`/api/channels/${channelId}`, {
         method: "DELETE"
     })
