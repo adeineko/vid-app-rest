@@ -1,8 +1,6 @@
 package kdg.be.prog5_app.services;
 
-import kdg.be.prog5_app.controllers.api.dto.VideoDto;
 import kdg.be.prog5_app.domain.Channel;
-import kdg.be.prog5_app.domain.ChannelVideo;
 import kdg.be.prog5_app.domain.Video;
 import kdg.be.prog5_app.repositories.ChannelRepository;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
@@ -12,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ChannelService {
@@ -60,5 +57,15 @@ public class ChannelService {
     public Channel addChannel(String name, LocalDate date, int subscribers) {
         var channel = new Channel(name, date, subscribers);
         return channelRepository.save(channel);
+    }
+
+    public boolean changeChannelDescription(long channelId, String newName, int subscribers) {
+        var channel = channelRepository.findById(channelId).orElse(null);
+        if (channel == null) {
+            return false;
+        }
+        channel.setName(newName);
+        channelRepository.save(channel);
+        return true;
     }
 }

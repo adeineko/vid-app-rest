@@ -17,9 +17,6 @@ public class ChannelVideo {
     @JoinColumn(name = "video_id")
     private Video video;
 
-//    @Column
-//    private Revenue revenue;
-
     public ChannelVideo() {
     }
 
@@ -27,7 +24,6 @@ public class ChannelVideo {
         this.id = id;
         this.channel = channel;
         this.video = video;
-//        this.revenue = revenue;
     }
 
     public long getId() {

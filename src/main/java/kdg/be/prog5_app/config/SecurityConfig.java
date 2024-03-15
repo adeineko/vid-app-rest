@@ -3,6 +3,7 @@ package kdg.be.prog5_app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,9 +29,9 @@ public class SecurityConfig {
                                         regexMatcher(HttpMethod.GET, "\\.ico$"))
                                 .permitAll()
                                 .requestMatchers(
-                                        antMatcher(HttpMethod.GET, "/api/**"),
-                                        antMatcher(HttpMethod.POST, "/api/**"),
-                                        antMatcher(HttpMethod.PATCH, "/api/**")
+                                        antMatcher(HttpMethod.GET, "/api/**")
+//                                        antMatcher(HttpMethod.POST, "/api/**"),
+//                                        antMatcher(HttpMethod.PATCH, "/api/**")
                                 )
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))
@@ -41,10 +42,21 @@ public class SecurityConfig {
                 .formLogin(formLogin ->
                         formLogin.loginPage("/login")
                                 .permitAll())
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling.authenticationEntryPoint(
+                                (request, response, exception) -> {
+                                    if (request.getRequestURI().startsWith("/api")) {
+                                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                                    } else {
+                                        response.sendRedirect(request.getContextPath() + "/login");
+                                    }
+                                })
+                )
                 .csrf(csrf -> csrf.disable());
 //        @formater:on
         return http.build();
     }
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

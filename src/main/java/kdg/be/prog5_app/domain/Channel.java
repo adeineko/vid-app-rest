@@ -13,11 +13,11 @@ public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     private LocalDate date;
-    @Column(name = "subscribers")
+    @Column(name = "subscribers", nullable = false)
     private int subscribers;
 
     @OneToMany(mappedBy = "channel")

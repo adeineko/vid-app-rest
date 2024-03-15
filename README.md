@@ -72,4 +72,14 @@ Date: Fri, 01 Mar 2024 14:19:51 GMT
 Keep-Alive: timeout=60
 Connection: keep-alive`
 > 
+### Week 3
+**API: Add 1 channel**
+> Request
+> 
+> `POST http://localhost:8080/api/channels`
+> 
+> Response
+> `HTTP/1.1 200`
+> 
+
 

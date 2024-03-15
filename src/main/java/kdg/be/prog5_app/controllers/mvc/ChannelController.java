@@ -1,22 +1,15 @@
 package kdg.be.prog5_app.controllers.mvc;
 
-import kdg.be.prog5_app.domain.Channel;
 import kdg.be.prog5_app.services.ChannelService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/channels")
 public class ChannelController {
     private final ChannelService channelService;
 
-//    @Autowired
     public ChannelController(ChannelService channelService) {
         this.channelService = channelService;
     }
@@ -34,21 +27,7 @@ public class ChannelController {
     }
 
     @GetMapping("/add")
-    public String getChannelPage(Model model) {
-        model.addAttribute("getPage", new Channel());
-        return "channel/AddChannel";
-    }
-
-    @PostMapping("create")
-    public String addChannel(@Valid @ModelAttribute Channel channel, BindingResult errors, Model model) {
-        if (errors.hasErrors()) {
-            model.addAttribute("getPage", new Channel());
-            model.addAttribute("message2", errors.getAllErrors().stream().findFirst().orElse(null).getDefaultMessage());
-            return "channel/AddChannel";
-        }
-        channelService.addChannel(channel);
-        model.addAttribute("getPage", new Channel());
-        model.addAttribute("message", "Channel added!");
+    public String getAddChannelPage() {
         return "channel/AddChannel";
     }
 }

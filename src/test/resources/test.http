@@ -3,9 +3,13 @@ GET http://localhost:8080
 
 ###API: retrieve 1 channel
 GET http://localhost:8080/api/channels/1
+Accept: application/json
+Content-Type: application/json
 
 ###API: retrieve 1 channel (not found)
 GET http://localhost:8080/api/channels/90
+Accept: application/json
+Content-Type: application/json
 
 ### API: delete a channel
 DELETE http://localhost:8080/api/channels/2
@@ -16,3 +20,28 @@ DELETE http://localhost:8080/api/channels/90
 ###API: retrieve videos of a channel
 GET http://localhost:8080/api/channels/1/videos
 
+###API: Creating channel
+# @no-redirect
+POST http://localhost:8080/api/channels
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=0431F64F7ED50A2572A572EF69F81807
+
+{
+  "name": "The name",
+  "date": "2024-03-11",
+  "subscribers": 345
+}
+
+###API: Creating channel (bad request)
+# @no-redirect
+POST http://localhost:8080/api/channels
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=0431F64F7ED50A2572A572EF69F81807
+
+{
+  "name": "",
+  "date": "2024-03-11",
+  "subscribers": 345
+}

@@ -2,6 +2,7 @@ package kdg.be.prog5_app.controllers.api;
 
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
+import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
 import kdg.be.prog5_app.services.ChannelService;
 import org.modelmapper.ModelMapper;
@@ -25,14 +26,14 @@ public class ChannelsController {
     }
 
     @PostMapping
-    ResponseEntity<ChannelDto> addIssue(@RequestBody @Valid ChannelDto channelDto) {
-        var createdIssue = channelService.addChannel(
+    ResponseEntity<ChannelDto> addChannel(@RequestBody @Valid ChannelDto channelDto) {
+        var createdChannel = channelService.addChannel(
                 channelDto.getName(),
                 channelDto.getDate(),
                 channelDto.getSubscribers()
         );
         return new ResponseEntity<>(
-                modelMapper.map(createdIssue, ChannelDto.class),
+                modelMapper.map(createdChannel, ChannelDto.class),
                 HttpStatus.CREATED
         );
     }
@@ -66,5 +67,15 @@ public class ChannelsController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("{id}")
+    ResponseEntity<Void> changeChannel(@PathVariable("id") long channelId,
+                                       @RequestBody @Valid UpdateChannelDto updateChannelDto) {
+        if (channelService.changeChannelDescription(channelId, updateChannelDto.getName(), updateChannelDto.getSubscribers())) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

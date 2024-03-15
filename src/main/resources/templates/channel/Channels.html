@@ -23,7 +23,7 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="channelTableBody">
             <tr th:id="'channel_' + ${channel.id}" th:each="channel:${channels}">
                 <td th:text="${channel.id}"></td>
                 <td>
@@ -32,15 +32,13 @@
                 <td th:text="${channel.date}"></td>
                 <td th:text="${channel.subscribers}"></td>
                 <td>
-<!--                    <form th:action="@{'/channels/delete/' + ${channel.id}}" th:method="post">-->
-                        <button type="button" class="btn btn-outline-danger">Delete</button>
-<!--                    </form>-->
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <a th:href="@{channels/add}" class="btn btn-outline-dark" tabindex="-1" role="button">Add Channel</a>
+    <button class="btn btn-outline-dark" tabindex="-1" type="button" id="addChannelButton">Add Channel</button>
 </div>
 <!-- Footer Fragment -->
 <div th:replace="~{fragments/footer :: footer}"></div>

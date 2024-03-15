@@ -3,6 +3,21 @@ const toggleVideosButton = document.getElementById("toggleVideosButton");
 const videosTable = document.getElementById("videosTable");
 const buttonWrapper = document.getElementById("dropdownButtonWrapper");
 const tableBody = document.getElementById("channelInformationBody");
+const deleteButtons = document.querySelectorAll('button.btn-outline-dark');
+
+
+for (const deleteButton of deleteButtons) {
+    deleteButton.addEventListener("click", handleDeleteDetails);
+}
+
+async function handleDeleteDetails() {
+    const response = await fetch(`/api/channels/${channelIdInput.value}`, {
+        method: "DELETE"
+    })
+    if (response.status === 204) {
+        window.location.replace("/channels");
+    }
+}
 
 async function toggleVideosTable() {
     if (videosTable.style.display === "table") {
