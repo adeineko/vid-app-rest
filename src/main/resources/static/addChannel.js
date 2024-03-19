@@ -1,3 +1,5 @@
+import {token, header} from "./util/csrf";
+
 const nameInput = document.getElementById("nameInput");
 const dateInput = document.getElementById("dateInput");
 const subscribersInput = document.getElementById("subscribersInput");
@@ -9,7 +11,8 @@ async function addNewChannel() {
         method: "POST",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            [header]: token
         },
         body: JSON.stringify({
             name: nameInput.value,

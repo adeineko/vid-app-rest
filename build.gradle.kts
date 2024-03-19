@@ -27,6 +27,7 @@ dependencies {
     implementation("org.modelmapper:modelmapper:3.2.0")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly ("org.webjars:bootstrap:5.3.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

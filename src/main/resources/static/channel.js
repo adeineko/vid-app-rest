@@ -1,3 +1,5 @@
+import {token, header} from "./util/csrf";
+
 const channelIdInput = document.getElementById("channelId");
 const toggleVideosButton = document.getElementById("toggleVideosButton");
 const videosTable = document.getElementById("videosTable");
@@ -24,7 +26,12 @@ async function toggleVideosTable() {
         hideVideosTable();
     } else {
         const response = await fetch(`/api/channels/${channelIdInput.value}/videos`,
-            {headers: {"Accept": "application/json"}});
+            {
+                headers: {
+                    "Accept": "application/json",
+                    [header]: token
+                }
+            });
         if (response.status === 200) {
             const videos = await response.json();
             tableBody.innerHTML = '';
@@ -59,4 +66,32 @@ function showVideosTable() {
 }
 
 toggleVideosButton.addEventListener('click', toggleVideosTable);
+
+const updateButton = document.getElementById("updateButton");
+const nameTextArea = document.getElementById("nameTextArea");
+const subscribersTextArea = document.getElementById("subscribersTextArea");
+
+async function handleUpdate() {
+    const response = await fetch(`/api/channels/${channelIdInput.value}`, {
+        method: "PATCH",
+        headers: {
+            "Content-type": "application/json",
+            [header]: token
+        },
+        body: JSON.stringify({
+            name: nameTextArea.value,
+            subscribers: subscribersTextArea.value
+        })
+    })
+    if (response.status === 204) {
+        updateButton.disabled = true;
+    } else {
+        alert('Something went wrong!');
+    }
+}
+
+updateButton.addEventListener('click', handleUpdate);
+nameTextArea.addEventListener("input", () => updateButton.disabled = false);
+subscribersTextArea.addEventListener("input", () => updateButton.disabled = false);
+
 

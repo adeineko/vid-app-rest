@@ -27,7 +27,6 @@ public class Channel {
     }
 
     public Channel(String name, LocalDate date, int subscribers) {
-//        this.id = id;
         this.name = name;
         this.date = date;
         this.subscribers = subscribers;

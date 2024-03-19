@@ -25,7 +25,6 @@ const addChannelButton = document.getElementById("addChannelButton");
  * @param {{id: number, name: string, date: localDate, subscribers: number}} channel
  */
 function addChannelToHtmlTable(channel) {
-    console.log("adding channel")
     const tableRow = document.createElement("tr");
     tableRow.id = `channel_${channel.id}`;
     tableRow.innerHTML = `

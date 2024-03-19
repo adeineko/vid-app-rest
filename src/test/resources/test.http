@@ -25,7 +25,7 @@ GET http://localhost:8080/api/channels/1/videos
 POST http://localhost:8080/api/channels
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=0431F64F7ED50A2572A572EF69F81807
+Cookie: JSESSIONID=01AED759216BCA55B703E52FCC35CEDE
 
 {
   "name": "The name",
@@ -38,10 +38,27 @@ Cookie: JSESSIONID=0431F64F7ED50A2572A572EF69F81807
 POST http://localhost:8080/api/channels
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=0431F64F7ED50A2572A572EF69F81807
+Cookie: JSESSIONID=01AED759216BCA55B703E52FCC35CEDE
 
 {
   "name": "",
   "date": "2024-03-11",
   "subscribers": 345
 }
+
+###API: Update channel
+# @no-redirect
+PATCH http://localhost:8080/api/channels/1
+Content-Type: application/json
+Cookie:JSESSIONID=01AED759216BCA55B703E52FCC35CEDE
+
+{
+  "name": "Channel",
+  "subscribers": 654
+}
+
+### API: retrieve one channels (path variable)
+
+GET http://localhost:8080/api/channels/1
+Accept: application/xml
+Cookie:JSESSIONID=01AED759216BCA55B703E52FCC35CEDE

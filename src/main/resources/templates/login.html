@@ -3,12 +3,11 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Issue Management - Sign In</title>
-<!--    <thymeleaf th:replace="~{includes :: meta_script_link}"/>-->
+    <title>Sign In</title>
+    <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
 </head>
 <body>
-
-<!--<header th:replace="~{includes :: header(page = 'login')}"></header>-->
+<div th:replace="~{fragments/navbar :: navbar(page = 'login')}"></div>
 
 <main class="container">
     <h1>Sign In</h1>
@@ -16,7 +15,7 @@
         <div class="pb-3">
             <label for="username" class="form-label"></label>
             <input name="username" id="username" class="form-control" type="text">
-        </div> <!--URL/login  BODY: username=johny&sgsgs -->
+        </div>
         <div class="pb-3">
             <label for="password" class="form-label"></label>
             <input name="password" id="password" class="form-control" type="password">

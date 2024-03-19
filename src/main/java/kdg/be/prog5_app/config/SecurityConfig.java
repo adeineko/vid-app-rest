@@ -24,14 +24,11 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
-                                        antMatcher(HttpMethod.GET, "/css/**"),
                                         antMatcher(HttpMethod.GET, "/webjars/**"),
                                         regexMatcher(HttpMethod.GET, "\\.ico$"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/api/**")
-//                                        antMatcher(HttpMethod.POST, "/api/**"),
-//                                        antMatcher(HttpMethod.PATCH, "/api/**")
                                 )
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))
@@ -51,8 +48,7 @@ public class SecurityConfig {
                                         response.sendRedirect(request.getContextPath() + "/login");
                                     }
                                 })
-                )
-                .csrf(csrf -> csrf.disable());
+                );
 //        @formater:on
         return http.build();
     }

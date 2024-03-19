@@ -59,12 +59,13 @@ public class ChannelService {
         return channelRepository.save(channel);
     }
 
-    public boolean changeChannelDescription(long channelId, String newName, int subscribers) {
+    public boolean changeChannelDescription(long channelId, String newName, int newSubscribers) {
         var channel = channelRepository.findById(channelId).orElse(null);
         if (channel == null) {
             return false;
         }
         channel.setName(newName);
+        channel.setSubscribers(newSubscribers);
         channelRepository.save(channel);
         return true;
     }
