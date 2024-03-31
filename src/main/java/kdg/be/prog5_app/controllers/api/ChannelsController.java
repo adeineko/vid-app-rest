@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
+import kdg.be.prog5_app.exceptions.UserNotFoundException;
 import kdg.be.prog5_app.security.CustomUserDetails;
 import kdg.be.prog5_app.services.ChannelService;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,15 +32,21 @@ public class ChannelsController {
     @PostMapping
     ResponseEntity<ChannelDto> addChannel(@RequestBody @Valid ChannelDto channelDto,
                                           @AuthenticationPrincipal CustomUserDetails user) {
-        var createdChannel = channelService.addChannel(
-                channelDto.getName(),
-                channelDto.getDate(),
-                channelDto.getSubscribers()
-        );
-        return new ResponseEntity<>(
-                modelMapper.map(createdChannel, ChannelDto.class),
-                HttpStatus.CREATED
-        );
+        try {
+            var createdChannel = channelService.addChannel(
+                    channelDto.getName(),
+                    channelDto.getDate(),
+                    channelDto.getSubscribers(),
+                    user.getUserId()
+            );
+            return new ResponseEntity<>(
+                    modelMapper.map(createdChannel, ChannelDto.class),
+                    HttpStatus.CREATED
+            );
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        }
     }
 
     @GetMapping("/{id}")
@@ -65,8 +73,7 @@ public class ChannelsController {
     }
 
     @DeleteMapping("{id}")
-    ResponseEntity<Void> deleteChannel(@PathVariable("id") long channelId,
-                                       @AuthenticationPrincipal CustomUserDetails user) {
+    ResponseEntity<Void> deleteChannel(@PathVariable("id") long channelId) {
         if (channelService.removeChannel(channelId)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

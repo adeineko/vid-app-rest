@@ -12,7 +12,7 @@ async function addNewChannel() {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            [header]: token
+            // [header]: token
         },
         body: JSON.stringify({
             name: nameInput.value,

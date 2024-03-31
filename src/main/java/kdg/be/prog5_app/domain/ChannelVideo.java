@@ -20,6 +20,10 @@ public class ChannelVideo {
     public ChannelVideo() {
     }
 
+    public ChannelVideo(Channel savedChannel) {
+        this.channel = savedChannel;
+    }
+
     public ChannelVideo(long id, Channel channel, Video video) {
         this.id = id;
         this.channel = channel;

@@ -14,7 +14,10 @@ for (const deleteButton of deleteButtons) {
 
 async function handleDeleteDetails() {
     const response = await fetch(`/api/channels/${channelIdInput.value}`, {
-        method: "DELETE"
+        method: "DELETE",
+        // headers: {
+        //     [header]: token
+        // }
     })
     if (response.status === 204) {
         window.location.replace("/channels");
@@ -90,8 +93,8 @@ async function handleUpdate() {
     }
 }
 
-updateButton.addEventListener('click', handleUpdate);
-nameTextArea.addEventListener("input", () => updateButton.disabled = false);
-subscribersTextArea.addEventListener("input", () => updateButton.disabled = false);
+updateButton?.addEventListener('click', handleUpdate);
+nameTextArea?.addEventListener("input", () => updateButton.disabled = false);
+subscribersTextArea?.addEventListener("input", () => updateButton.disabled = false);
 
 

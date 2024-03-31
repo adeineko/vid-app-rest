@@ -20,16 +20,20 @@ public class Channel {
     @Column(name = "subscribers", nullable = false)
     private int subscribers;
 
+    @ManyToOne
+    private User platformAdmin;
+
     @OneToMany(mappedBy = "channel")
     private List<ChannelVideo> videos;
 
     public Channel() {
     }
 
-    public Channel(String name, LocalDate date, int subscribers) {
+    public Channel(String name, LocalDate date, int subscribers, User platformAdmin) {
         this.name = name;
         this.date = date;
         this.subscribers = subscribers;
+        this.platformAdmin = platformAdmin;
     }
 
     public int getId() {
@@ -70,5 +74,13 @@ public class Channel {
 
     public void setVideos(List<ChannelVideo> videos) {
         this.videos = videos;
+    }
+
+    public User getPlatformAdmin() {
+        return platformAdmin;
+    }
+
+    public void setPlatformAdmin(User platformAdmin) {
+        this.platformAdmin = platformAdmin;
     }
 }

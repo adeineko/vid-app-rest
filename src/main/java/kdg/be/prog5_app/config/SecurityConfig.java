@@ -20,7 +20,7 @@ public class SecurityConfig {
             throws Exception {
         http.authorizeHttpRequests(
                         auths -> auths
-                                .requestMatchers(regexMatcher("^/channel\\?.+|channels|videos|comments\\?.+|search-channels"))
+                                .requestMatchers(regexMatcher("^/(channel\\?.+|channels|videos|comments\\?.+|search-channels)"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
@@ -49,6 +49,7 @@ public class SecurityConfig {
                                     }
                                 })
                 );
+//                .csrf(csrf -> csrf.disable());
 //        @formater:on
         return http.build();
     }

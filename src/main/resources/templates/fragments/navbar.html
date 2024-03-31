@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="html_head">
     <title>[[${pageTitle}]]</title>
     <thymeleaf th:fragment="meta_script_link" th:remove="tag">
@@ -18,16 +21,29 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/channels}" th:classappend="${page == 'channels'} ? 'active' : ''">Channels</a>
+                        <a class="nav-link" th:href="@{/channels}"
+                           th:classappend="${page == 'channels'} ? 'active' : ''">Channels</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/comments}" th:classappend="${page == 'comments'} ? 'active' : ''">Comments</a>
+                        <a class="nav-link" th:href="@{/comments}"
+                           th:classappend="${page == 'comments'} ? 'active' : ''">Comments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/videos}" th:classappend="${page == 'videos'} ? 'active' : ''">Videos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}" th:classappend="${page == 'login'} ? 'active' : ''">Login</a>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item me-2 pt-2" sec:authorize="isAuthenticated()">
+                        <span class="navbar-text">Welcome, <span sec:authentication="name"></span>!</span>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <form class="d-flex" th:action="@{/logout}" th:method="POST">
+                            <button type="submit" class="btn btn-secondary">Sign out</button>
+                        </form>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}" th:classappend="${page == 'login'} ? 'active' : ''">Sign
+                            in</a>
                     </li>
                 </ul>
             </div>
