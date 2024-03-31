@@ -132,7 +132,7 @@ HTTP/1.1 200
 <subscribers>654</subscribers>
 </ChannelDto>
 Response file saved.
-> 2024-03-15T175733.200.xml`
+2024-03-15T175733.200.xml`
 <TODO add json format>
 > 
 ### Week 5
