@@ -13,6 +13,8 @@ Content-Type: application/json
 
 ### API: delete a channel
 DELETE http://localhost:8080/api/channels/2
+Cookie: JSESSIONID=502C4B861E5DA64AD40A4B0E00FC9459
+X-CSRF-TOKEN: Klwnj75EK2ObwHAsu2iuJv0dCbXF8rKFD7bSekYh2J5BY6sYHG0Wvdx9SQa28BIYikWaFc5-JIz9kYWoao60TX4Uu6h5VJIo
 
 ### API: delete a channel (not found)
 DELETE http://localhost:8080/api/channels/90

@@ -1,3 +1,6 @@
+import {header, token} from "./util/csrf.js";
+
+console.log("channels.js")
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger');
 
 for (const deleteButton of deleteButtons) {
@@ -8,8 +11,12 @@ async function handleDelete(event) {
     const rowId = event.target.parentNode.parentNode.id;
     const channelId = parseInt(rowId.substring(rowId.indexOf('_') + 1));
     console.log(channelId)
+    console.log(token)
     const response = await fetch(`/api/channels/${channelId}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            [header]: token
+        }
     })
     if (response.status === 204) {
         const row = document.getElementById(`channel_${channelId}`);
@@ -24,7 +31,7 @@ const addChannelButton = document.getElementById("addChannelButton");
 /**
  * @param {{id: number, name: string, date: localDate, subscribers: number}} channel
  */
-function addChannelToHtmlTable(channel) {
+export function addChannelToHtmlTable(channel) {
     const tableRow = document.createElement("tr");
     tableRow.id = `channel_${channel.id}`;
     tableRow.innerHTML = `

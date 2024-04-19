@@ -1,4 +1,4 @@
-import {token, header} from "./util/csrf";
+import {token, header} from "./util/csrf.js";
 
 const nameInput = document.getElementById("nameInput");
 const dateInput = document.getElementById("dateInput");
@@ -12,7 +12,7 @@ async function addNewChannel() {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            // [header]: token
+            [header]: token
         },
         body: JSON.stringify({
             name: nameInput.value,

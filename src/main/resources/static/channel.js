@@ -1,4 +1,4 @@
-import {token, header} from "./util/csrf";
+import {token, header} from "./util/csrf.js";
 
 const channelIdInput = document.getElementById("channelId");
 const toggleVideosButton = document.getElementById("toggleVideosButton");
@@ -15,9 +15,9 @@ for (const deleteButton of deleteButtons) {
 async function handleDeleteDetails() {
     const response = await fetch(`/api/channels/${channelIdInput.value}`, {
         method: "DELETE",
-        // headers: {
-        //     [header]: token
-        // }
+        headers: {
+            [header]: token
+        }
     })
     if (response.status === 204) {
         window.location.replace("/channels");
