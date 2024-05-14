@@ -1,29 +1,26 @@
-package kdg.be.prog5_app.domain;
+package kdg.be.prog5_app.controllers.api.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import kdg.be.prog5_app.domain.UserRole;
 
-@Entity(name = "application_user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
+
     private long id;
-
-    @Column(nullable = false)
     private String username;
-
-    @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
     private UserRole role;
 
-    public User() {
+    public UserDto() {
     }
 
-    public User(String username, String password, UserRole role) {
+
+    public UserDto(long id, String username, String password, UserRole role) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.role = UserRole.USER;
     }
 
     public long getId() {

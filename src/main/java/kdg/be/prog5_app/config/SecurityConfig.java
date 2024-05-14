@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +21,7 @@ public class SecurityConfig {
             throws Exception {
         http.authorizeHttpRequests(
                         auths -> auths
-                                .requestMatchers(regexMatcher("^/(channel\\?.+|channels|videos|comments\\?.+|search-channels)"))
+                                .requestMatchers(regexMatcher("^/(cdhannel\\?.+|channels|videos|comments\\?.+|search-channels)"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
@@ -30,9 +31,11 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/api/**"),
+                                        antMatcher(HttpMethod.POST, "/api/**"),
                                         antMatcher(HttpMethod.GET, "/js/login.js"),
+                                        antMatcher(HttpMethod.POST, "/js/signup.js"),
+                                        antMatcher(HttpMethod.GET, "/js/signup.js"),
                                         antMatcher(HttpMethod.GET, "/signup/**")
-
                                 )
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))
@@ -53,7 +56,6 @@ public class SecurityConfig {
                                     }
                                 })
                 );
-//                .csrf(csrf -> csrf.disable());
 //        @formater:on
         return http.build();
     }

@@ -60,7 +60,6 @@ public class ChannelService {
         return channelRepository.findVideosByChannelId(channelId);
     }
 
-    //    @Transactional
     public Channel addChannel(String name, LocalDate date, int subscribers, long userId) {
         var user = userRepository.findById(userId).orElse(null);
         var channel = new Channel(name, date, subscribers, user);

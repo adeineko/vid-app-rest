@@ -1,4 +1,5 @@
 import {token, header} from "../util/csrf.js";
+import {addChannelToHtmlTable} from "./channels";
 
 const nameInput = document.getElementById("nameInput");
 const dateInput = document.getElementById("dateInput");
@@ -6,7 +7,7 @@ const subscribersInput = document.getElementById("subscribersInput");
 const addButton = document.getElementById("addButton");
 
 async function addNewChannel() {
-    console.log("fetching")
+
     const response = await fetch('/api/channels', {
         method: "POST",
         headers: {
@@ -31,4 +32,4 @@ async function addNewChannel() {
     }
 }
 
-addButton.addEventListener("click", addNewChannel);
+addButton?.addEventListener("click", addNewChannel);

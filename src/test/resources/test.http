@@ -64,3 +64,16 @@ Cookie:JSESSIONID=01AED759216BCA55B703E52FCC35CEDE
 GET http://localhost:8080/api/channels/1
 Accept: application/xml
 Cookie:JSESSIONID=01AED759216BCA55B703E52FCC35CEDE
+
+### API: create user
+# @no-redirect
+POST http://localhost:8080/api/signup/
+Accept: application/json
+Content-Type: application/json
+Cookie: JSESSIONID=477C538261DF1DA067B682853CADE6E7
+X-CSRF-TOKEN:34y3_w8sfpsvDIXHobvQt8bxigVPtBFXVgIe1TekaPGkQgpB6byEzD8aSvkCOrzyw5bkgfKVp2R81iV6NzMt4QaQWsiQdDwi
+
+{
+  "username": "anna",
+  "password": "123456"
+}

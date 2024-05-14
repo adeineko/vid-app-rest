@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         var user = userService.getUserByUserName(username);
         if (user != null) {
             var authorities = new ArrayList<SimpleGrantedAuthority>();
+            authorities.add(new SimpleGrantedAuthority(user.getRole().getCode()));
             return new CustomUserDetails(
                     user.getUsername(),
                     user.getPassword(),

@@ -134,7 +134,23 @@ HTTP/1.1 200
 Response file saved.
 2024-03-15T175733.200.xml`
 
-### Week 5
->Username: anna
-> 
+### Week 4
+
+**List of users:**
+> Username: anna
+>
 >Password: anna
+
+> Username: alex
+>
+>Password: alex
+
+> Username: walter
+>
+>Password: walter
+
+> Page that can be accessed by anyone
+> `http://localhost:8080/channels`
+
+> Page that requires authentication to be accessible
+> `http://localhost:8080/channels/1`
