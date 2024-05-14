@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
+
+    <title>Signup</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="/js/singup.js" type="module"></script>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar(page = 'signup')}"></div>
+
+<main class="container">
+
+    <h1>Signup</h1>
+    <form th:action="@{/api/signup}" method="post">
+        <div class="pb-3">
+            <input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control" required>
+        </div>
+
+        <div class="pb-3">
+            <input id="lastName" name="lastName" type="text" placeholder="Last Name" class="form-control" required>
+        </div>
+
+        <div class="pb-3">
+            <input id="email" name="email" type="email" placeholder="Email" class="form-control" required>
+        </div>
+
+        <div class="pb-3">
+            <input id="password" name="password" type="password" placeholder="Create password" class="form-control"
+                   required minlength="6" maxlength="10"/>
+        </div>
+
+        <div class="pb-3">
+            <button type="submit" class="btn btn-primary" id="signUpButton">Signup</button>
+        </div>
+    </form>
+
+    <div class="form-link">
+        <span>Already have an account? <a class="link login-link" onclick="window.location='login';">Login</a></span>
+    </div>
+
+</main>
+</body>
+</html>
+

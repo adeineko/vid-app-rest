@@ -5,6 +5,8 @@
 <head>
     <title>Sign In</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="/js/login.js" type="module"></script>
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar(page = 'login')}"></div>
@@ -20,7 +22,15 @@
             <label for="password" class="form-label"></label>
             <input name="password" id="password" class="form-control" type="password">
         </div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <div class="pb-3">
+            <input type="checkbox" id="checkBoxShowHide">Show Password
+        </div>
+        <div class="pb-3">
+            <button type="submit" class="btn btn-primary" id="signInButton">Sign In</button>
+        </div>
+        <div class="form-link">
+            <span>Don't have an account? <a class="link signup-link" id="signUpButton">Signup</a></span>
+        </div>
     </form>
 </main>
 

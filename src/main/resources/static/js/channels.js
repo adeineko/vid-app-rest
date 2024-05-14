@@ -1,4 +1,4 @@
-import {header, token} from "./util/csrf.js";
+import {header, token} from "../util/csrf.js";
 
 console.log("channels.js")
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger');

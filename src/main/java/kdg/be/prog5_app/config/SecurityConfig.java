@@ -25,10 +25,14 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
                                         antMatcher(HttpMethod.GET, "/webjars/**"),
+                                        antMatcher(HttpMethod.GET, "/css/**"),
                                         regexMatcher(HttpMethod.GET, "\\.ico$"))
                                 .permitAll()
                                 .requestMatchers(
-                                        antMatcher(HttpMethod.GET, "/api/**")
+                                        antMatcher(HttpMethod.GET, "/api/**"),
+                                        antMatcher(HttpMethod.GET, "/js/login.js"),
+                                        antMatcher(HttpMethod.GET, "/signup/**")
+
                                 )
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))

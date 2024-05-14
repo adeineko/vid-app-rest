@@ -1,4 +1,4 @@
-import {token, header} from "./util/csrf.js";
+import {token, header} from "../util/csrf.js";
 
 const channelIdInput = document.getElementById("channelId");
 const toggleVideosButton = document.getElementById("toggleVideosButton");

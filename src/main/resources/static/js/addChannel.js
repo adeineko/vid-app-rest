@@ -1,4 +1,4 @@
-import {token, header} from "./util/csrf.js";
+import {token, header} from "../util/csrf.js";
 
 const nameInput = document.getElementById("nameInput");
 const dateInput = document.getElementById("dateInput");
