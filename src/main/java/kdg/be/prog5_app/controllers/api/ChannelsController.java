@@ -1,5 +1,6 @@
 package kdg.be.prog5_app.controllers.api;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
@@ -12,10 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static kdg.be.prog5_app.domain.UserRole.ADMIN;
 
 @RestController
 @RequestMapping("/api/channels")
@@ -31,7 +33,11 @@ public class ChannelsController {
 
     @PostMapping
     ResponseEntity<ChannelDto> addChannel(@RequestBody @Valid ChannelDto channelDto,
-                                          @AuthenticationPrincipal CustomUserDetails user) {
+                                          @AuthenticationPrincipal CustomUserDetails user,
+                                          HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         try {
             var createdChannel = channelService.addChannel(
                     channelDto.getName(),
@@ -73,7 +79,11 @@ public class ChannelsController {
     }
 
     @DeleteMapping("{id}")
-    ResponseEntity<Void> deleteChannel(@PathVariable("id") long channelId) {
+    ResponseEntity<Void> deleteChannel(@PathVariable("id") long channelId,
+                                       HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         if (channelService.removeChannel(channelId)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -82,7 +92,11 @@ public class ChannelsController {
 
     @PatchMapping("{id}")
     ResponseEntity<Void> changeChannel(@PathVariable("id") long channelId,
-                                       @RequestBody @Valid UpdateChannelDto updateChannelDto) {
+                                       @RequestBody @Valid UpdateChannelDto updateChannelDto,
+                                       HttpServletRequest request) {
+        if (!request.isUserInRole(ADMIN.getCode())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         if (channelService.changeChannelDescription(channelId, updateChannelDto.getName(), updateChannelDto.getSubscribers())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {

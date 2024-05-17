@@ -1,0 +1,32 @@
+{
+  "name": "channelsplatform",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "> Anna Deineko",
+  "author": "Anna Deineko",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/kdg-ti/programming-5/projects-23-24/acs202/anna.deineko/programming-5.git"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "animejs": "^3.2.2",
+    "bootstrap-icons": "^1.11.3",
+    "joi": "^17.13.1"
+  },
+  "devDependencies": {
+    "css-loader": "^7.1.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-import": "^2.29.1",
+    "mini-css-extract-plugin": "^2.9.0",
+    "sass": "^1.77.1",
+    "sass-loader": "^14.2.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build": "webpack"
+  }
+}

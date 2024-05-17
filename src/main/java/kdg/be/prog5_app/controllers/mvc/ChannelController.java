@@ -1,9 +1,14 @@
 package kdg.be.prog5_app.controllers.mvc;
 
+import jakarta.servlet.http.HttpServletRequest;
+import kdg.be.prog5_app.security.CustomUserDetails;
 import kdg.be.prog5_app.services.ChannelService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import static kdg.be.prog5_app.domain.UserRole.ADMIN;
 
 @Controller
 @RequestMapping("/channels")
@@ -27,7 +32,13 @@ public class ChannelController {
     }
 
     @GetMapping("/add")
-    public String getAddChannelPage() {
+    public String getAddChannelPage(@AuthenticationPrincipal CustomUserDetails user,
+                                    HttpServletRequest request) {
+//        Long channelId = user == null ? null : user.getUserId();
+        request.isUserInRole(ADMIN.getCode());
+//                ||
+                // Method 1: launches additional queries
+//                user.getUserId() != null
         return "channel/AddChannel";
     }
 }

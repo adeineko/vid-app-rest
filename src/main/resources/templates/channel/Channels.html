@@ -3,7 +3,7 @@
 <head>
     <title>Channels</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
-    <script src="/js/channels.js" type="module"></script>
+    <script src="/js/bundle-channels.js" defer></script>
 </head>
 <body>
 <!-- Navbar Fragment -->
@@ -29,7 +29,8 @@
                 <td th:text="${channel.date}"></td>
                 <td th:text="${channel.subscribers}"></td>
                 <td>
-                    <button sec:authorize="isAuthenticated()" type="button" class="btn btn-outline-danger">Delete
+                    <button sec:authorize="isAuthenticated()" type="button" class="btn btn-outline-danger">
+                        <i class="bi  bi-trash3"></i> Delete
                     </button>
                 </td>
             </tr>

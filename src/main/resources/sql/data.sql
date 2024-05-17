@@ -1,7 +1,7 @@
 INSERT INTO application_user(username, password, role)
 VALUES ('anna', '$2a$10$5YVfAzYw2gz0To69fzv88ui8iZL/IV7iwZBI33LPAf.kzWT80ZXMi', 1),
        ('alex', '$2a$10$yzyNFbmVkwPg3T1gDFZ63.ZZVJI3odPMS1dhBXXuJYTCqZd/XGLRW', 1),
-       ('walter', '$2a$10$fOx52CIUnboMJkZMimdwFOasaLb.zffBZe/WjhyTD0zehRM9ia3wi', 0);
+       ('walter', '$2a$10$fOx52CIUnboMJkZMimdwFOasaLb.zffBZe/WjhyTD0zehRM9ia3wi', 0); /*user*/
 
 INSERT INTO channel(name, date, subscribers)
 VALUES ('Beyond Fireship', '2022-09-04', '329000'),

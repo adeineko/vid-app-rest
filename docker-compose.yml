@@ -10,6 +10,7 @@ services:
       POSTGRES_PASSWORD: '12345'
     ports:
       - '5434:5432'
+
   postgres_platform_test_db:
     image: postgres:16.1-alpine
     restart: always
@@ -18,4 +19,6 @@ services:
       POSTGRES_USER: '12345'
       POSTGRES_PASSWORD: '12345'
     ports:
-      - '5435:5432'
+      - '56666:5432'
+    profiles:
+      - test

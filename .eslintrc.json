@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": false
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "root": true,
+    "extends": [
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
+    "rules": {
+        "comma-dangle": [ "error", "never" ],
+        "indent": [ "error", 4, { "SwitchCase": 1 } ],
+        "linebreak-style": [ "error", "unix" ],
+        "no-console": "off",
+        "no-trailing-spaces": "error",
+        "no-undef": "error",
+        "quotes": [ "error", "single" ],
+        "semi": [ "error", "never" ]
+    },
+    "overrides": [
+        {
+            "files": [ "webpack.config.js" ],
+            "env": {
+                "browser": false,
+                "node": true
+            }
+        }
+    ]
+}
