@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Channels</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
@@ -29,7 +30,7 @@
                 <td th:text="${channel.date}"></td>
                 <td th:text="${channel.subscribers}"></td>
                 <td>
-                    <button sec:authorize="isAuthenticated()" type="button" class="btn btn-outline-danger">
+                    <button sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn btn-outline-danger">
                         <i class="bi  bi-trash3"></i> Delete
                     </button>
                 </td>
@@ -37,7 +38,7 @@
             </tbody>
         </table>
     </div>
-    <button sec:authorize="isAuthenticated()" class="btn btn-outline-dark" tabindex="-1" type="button"
+    <button sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-dark" tabindex="-1" type="button"
             id="addChannelButton">Add Channel
     </button>
 </div>

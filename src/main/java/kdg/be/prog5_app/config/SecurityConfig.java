@@ -40,6 +40,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))
                                 .permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.GET, "/add"))
+                                .hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )
@@ -51,6 +53,8 @@ public class SecurityConfig {
                                 (request, response, exception) -> {
                                     if (request.getRequestURI().startsWith("/api")) {
                                         response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                                    } else if (request.getRequestURI().startsWith("/error")) {
+                                        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
                                     } else {
                                         response.sendRedirect(request.getContextPath() + "/login");
                                     }

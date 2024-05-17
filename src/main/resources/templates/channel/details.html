@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
     <title th:text="${channel.name}"></title>
@@ -38,7 +38,9 @@
             </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" id="updateButton" type="button" disabled>Update</button>
+        <button sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary" id="updateButton" type="button" disabled>
+            Update
+        </button>
     </div>
     <div class="mt-5">
         <div class="dropdown" id="dropdownButtonWrapper">
@@ -59,7 +61,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-outline-dark">Delete</button>
+    <button type="button" class="btn btn-outline-dark" sec:authorize="hasRole('ROLE_ADMIN')">Delete</button>
 
 </div>
 <!-- Footer Fragment -->
