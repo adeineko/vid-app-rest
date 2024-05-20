@@ -1,11 +1,13 @@
 package kdg.be.prog5_app.controllers.api.dto;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
 public class ChannelDto {
     private int id;
+//    @NotBlank(message = "Channel name must not be blank")
     private String name;
     private LocalDate date;
     private int subscribers;

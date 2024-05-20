@@ -1,6 +1,7 @@
 package kdg.be.prog5_app.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,14 +15,15 @@ public class Channel {
     private int id;
 
     @Column(name = "name", nullable = false)
+    @NotBlank(message = "Channel name must not be blank")
     private String name;
     @Column(name = "date", nullable = false)
     private LocalDate date;
     @Column(name = "subscribers", nullable = false)
     private int subscribers;
 
-    @ManyToOne
-    private User platformAdmin;
+ /*   @ManyToOne
+    private User platformAdmin;*/
 
     @OneToMany(mappedBy = "channel")
     private List<ChannelVideo> videos;
@@ -29,11 +31,11 @@ public class Channel {
     public Channel() {
     }
 
-    public Channel(String name, LocalDate date, int subscribers, User platformAdmin) {
+    public Channel(String name, LocalDate date, int subscribers/*, User platformAdmin*/) {
         this.name = name;
         this.date = date;
         this.subscribers = subscribers;
-        this.platformAdmin = platformAdmin;
+  /*      this.platformAdmin = platformAdmin;*/
     }
 
     public int getId() {
@@ -76,11 +78,11 @@ public class Channel {
         this.videos = videos;
     }
 
-    public User getPlatformAdmin() {
+  /*  public User getPlatformAdmin() {
         return platformAdmin;
     }
 
     public void setPlatformAdmin(User platformAdmin) {
         this.platformAdmin = platformAdmin;
-    }
+    }*/
 }

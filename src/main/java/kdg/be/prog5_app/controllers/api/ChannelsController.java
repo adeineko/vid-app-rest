@@ -33,7 +33,6 @@ public class ChannelsController {
 
     @PostMapping
     ResponseEntity<ChannelDto> addChannel(@RequestBody @Valid ChannelDto channelDto,
-                                          @AuthenticationPrincipal CustomUserDetails user,
                                           HttpServletRequest request) {
         if (!request.isUserInRole(ADMIN.getCode())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -42,8 +41,7 @@ public class ChannelsController {
             var createdChannel = channelService.addChannel(
                     channelDto.getName(),
                     channelDto.getDate(),
-                    channelDto.getSubscribers(),
-                    user.getUserId()
+                    channelDto.getSubscribers()
             );
             return new ResponseEntity<>(
                     modelMapper.map(createdChannel, ChannelDto.class),

@@ -60,11 +60,10 @@ public class ChannelService {
         return channelRepository.findVideosByChannelId(channelId);
     }
 
-    public Channel addChannel(String name, LocalDate date, int subscribers, long userId) {
-        var user = userRepository.findById(userId).orElse(null);
-        var channel = new Channel(name, date, subscribers, user);
+    public Channel addChannel(String name, LocalDate date, int subscribers) {
+       /* var user = userRepository.findById(userId).orElse(null);*/
+        var channel = new Channel(name, date, subscribers);
         return channelRepository.save(channel);
-
     }
 
     public boolean changeChannelDescription(long channelId, String newName, int newSubscribers) {

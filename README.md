@@ -139,18 +139,32 @@ Response file saved.
 **List of users:**
 > Username: anna
 >
->Password: anna
+>Password: anna - ADMIN
 
 > Username: alex
 >
->Password: alex
+>Password: alex - ADMIN
 
 > Username: walter
 >
->Password: walter
+>Password: walter - REGULAR USER
 
 > Page that can be accessed by anyone
 > `http://localhost:8080/channels`
 
 > Page that requires authentication to be accessible
 > `http://localhost:8080/channels/1`
+
+> ### Week 5
+> **Unauthenticated users**
+>
+> Can see only list of channels and Videos,
+> no comments. Cannot access details about channels/comments
+>
+> **Authenticated user**
+>
+> Can access Channels, Comments, Videos and detailed pages of it, but cannot add/update/delete
+>
+> **Admin**
+>
+> Authenticated user + ability to add, delete, update
