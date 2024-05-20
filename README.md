@@ -20,6 +20,25 @@ information.
 > videos - comments: one to many
 >
 > videos - channels: many to many
+>
+
+### Build&Run instructions
+
+1. Start docker:
+
+> docker compose --profile "*" up -d
+
+2. Generate jar file:
+
+> ./gradlew build
+
+3. Run the application:
+
+> java -jar path/to/.jar fully.qualified.package.Application
+
+4. Run tests:
+
+> ./gradlew clean test --info
 
 ### Week 2
 
@@ -155,7 +174,8 @@ Response file saved.
 > Page that requires authentication to be accessible
 > `http://localhost:8080/channels/1`
 
-> ### Week 5
+### Week 5
+
 > **Unauthenticated users**
 >
 > Can see only list of channels and Videos,
@@ -168,3 +188,11 @@ Response file saved.
 > **Admin**
 >
 > Authenticated user + ability to add, delete, update
+
+### Week 6
+
+>
+> **Profiles**
+>
+> dev profile - used for development, set as environment variable
+> test profile - used for testing
