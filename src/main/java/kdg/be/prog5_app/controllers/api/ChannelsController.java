@@ -6,13 +6,11 @@ import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
 import kdg.be.prog5_app.exceptions.UserNotFoundException;
-import kdg.be.prog5_app.security.CustomUserDetails;
 import kdg.be.prog5_app.services.ChannelService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -95,7 +93,7 @@ public class ChannelsController {
         if (!request.isUserInRole(ADMIN.getCode())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        if (channelService.changeChannelDescription(channelId, updateChannelDto.getName(), updateChannelDto.getSubscribers())) {
+        if (channelService.changeChannelName(channelId, updateChannelDto.getName(), updateChannelDto.getSubscribers())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

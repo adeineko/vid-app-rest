@@ -1,18 +1,15 @@
 package kdg.be.prog5_app.services;
 
 import kdg.be.prog5_app.domain.Channel;
-import kdg.be.prog5_app.domain.ChannelVideo;
 import kdg.be.prog5_app.domain.Video;
 import kdg.be.prog5_app.repositories.ChannelRepository;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
 import kdg.be.prog5_app.repositories.UserRepository;
-import org.modelmapper.internal.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,10 +24,6 @@ public class ChannelService {
         this.channelVideoRepository = channelVideoRepository;
         this.userRepository = userRepository;
     }
-
-//    public Channel addChannel(Channel channel) {
-//        return channelRepository.save(channel);
-//    }
 
     public Channel getChannel(Long id) {
         return channelRepository.findById(id).orElse(null);
@@ -66,7 +59,7 @@ public class ChannelService {
         return channelRepository.save(channel);
     }
 
-    public boolean changeChannelDescription(long channelId, String newName, int newSubscribers) {
+    public boolean changeChannelName(long channelId, String newName, int newSubscribers) {
         var channel = channelRepository.findById(channelId).orElse(null);
         if (channel == null) {
             return false;
