@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
+import kdg.be.prog5_app.domain.ChannelVideo;
 import kdg.be.prog5_app.exceptions.UserNotFoundException;
 import kdg.be.prog5_app.services.ChannelService;
 import org.modelmapper.ModelMapper;
@@ -62,16 +63,19 @@ public class ChannelsController {
     }
 
     @GetMapping("/{id}/videos")
-    List<VideoDto> getVideosOfChannel(@PathVariable("id") long channelId) {
-        return channelService.getVideoOfChannel(channelId)
+    ResponseEntity<List<VideoDto>> getChannelWithVideos(@PathVariable("id") long channelId) {
+        var channel = channelService.getChannelWithVideos(channelId);
+        if (channel == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (channel.getVideos().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return ResponseEntity.ok(channel.getVideos()
                 .stream()
-                .map(video -> new VideoDto(
-                        video.getId(),
-                        video.getTitle(),
-                        video.getViews(),
-                        video.getLink(),
-                        video.getGenre()
-                )).toList();
+                .map(ChannelVideo::getVideo)
+                .map(video -> modelMapper.map(video, VideoDto.class))
+                .toList());
     }
 
     @DeleteMapping("{id}")

@@ -16,13 +16,13 @@ import java.util.List;
 public class ChannelService {
     private final ChannelRepository channelRepository;
     private final ChannelVideoRepository channelVideoRepository;
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
 
     @Autowired
     public ChannelService(ChannelRepository channelRepository, ChannelVideoRepository channelVideoRepository, UserRepository userRepository) {
         this.channelRepository = channelRepository;
         this.channelVideoRepository = channelVideoRepository;
-        this.userRepository = userRepository;
+//        this.userRepository = userRepository;
     }
 
     public Channel getChannel(Long id) {
@@ -45,13 +45,17 @@ public class ChannelService {
         return channelRepository.showAllChannels();
     }
 
-    public List<Video> findVideosByChannelId(Long channelId) {
-        return channelRepository.findVideosByChannelId(channelId);
+//    public List<Video> findVideosByChannelId(Long channelId) {
+//        return channelRepository.findVideosByChannelId(channelId);
+//    }
+
+    public Channel getChannelWithVideos(long channelId) {
+        return channelRepository.findByIdWithVideos(channelId).orElse(null);
     }
 
-    public List<Video> getVideoOfChannel(long channelId) {
-        return channelRepository.findVideosByChannelId(channelId);
-    }
+//    public List<Video> getVideoOfChannel(long channelId) {
+//        return channelRepository.findVideosByChannelId(channelId);
+//    }
 
     public Channel addChannel(String name, LocalDate date, int subscribers) {
        /* var user = userRepository.findById(userId).orElse(null);*/

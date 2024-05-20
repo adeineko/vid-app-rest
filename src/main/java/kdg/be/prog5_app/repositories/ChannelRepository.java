@@ -16,17 +16,15 @@ public interface ChannelRepository extends JpaRepository<Channel, Long> {
     @Query("SELECT channels FROM Channel channels")
     List<Channel> showAllChannels();
 
-    List<Channel> findByName(String name);
-
     @Query("""
             select channel from Channel channel
             left join fetch channel.videos videos
-            left join fetch channel.videos
+            left join fetch videos.video
             where channel.id = :channelId
             """)
     Optional<Channel> findByIdWithVideos(long channelId);
 
-    Channel save(Channel channel);
+//    Channel save(Channel channel);
 
     @Query("SELECT cv.video FROM ChannelVideo cv WHERE cv.channel.id = :channelId")
     List<Video> findVideosByChannelId(@Param("channelId") Long channelId);

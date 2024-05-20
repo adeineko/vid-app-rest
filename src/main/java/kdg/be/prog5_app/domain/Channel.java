@@ -22,9 +22,6 @@ public class Channel {
     @Column(name = "subscribers", nullable = false)
     private int subscribers;
 
- /*   @ManyToOne
-    private User platformAdmin;*/
-
     @OneToMany(mappedBy = "channel")
     private List<ChannelVideo> videos;
 
@@ -35,7 +32,6 @@ public class Channel {
         this.name = name;
         this.date = date;
         this.subscribers = subscribers;
-  /*      this.platformAdmin = platformAdmin;*/
     }
 
     public int getId() {
