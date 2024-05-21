@@ -1,7 +1,8 @@
 node_modules/
 src/main/resources/static/js/
 src/main/resources/static/css/
-build/reports
+htmlReport/
+
 HELP.md
 .gradle
 build/
