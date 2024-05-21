@@ -1,0 +1,99 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > ChannelRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">kdg.be.prog5_app.repositories</a>
+</div>
+
+<h1>Coverage Summary for Class: ChannelRepository (kdg.be.prog5_app.repositories)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ChannelRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package kdg.be.prog5_app.repositories;
+&nbsp;
+&nbsp;import kdg.be.prog5_app.domain.Channel;
+&nbsp;import kdg.be.prog5_app.domain.Video;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.data.jpa.repository.Query;
+&nbsp;import org.springframework.data.repository.query.Param;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Repository
+&nbsp;public interface ChannelRepository extends JpaRepository&lt;Channel, Long&gt; {
+&nbsp;
+&nbsp;    @Query(&quot;SELECT channels FROM Channel channels&quot;)
+&nbsp;    List&lt;Channel&gt; showAllChannels();
+&nbsp;
+&nbsp;    @Query(&quot;&quot;&quot;
+&nbsp;            select channel from Channel channel
+&nbsp;            left join fetch channel.videos videos
+&nbsp;            left join fetch videos.video
+&nbsp;            where channel.id = :channelId
+&nbsp;            &quot;&quot;&quot;)
+&nbsp;    Optional&lt;Channel&gt; findByIdWithVideos(long channelId);
+&nbsp;
+&nbsp;//    Channel save(Channel channel);
+&nbsp;
+&nbsp;    @Query(&quot;SELECT cv.video FROM ChannelVideo cv WHERE cv.channel.id = :channelId&quot;)
+&nbsp;    List&lt;Video&gt; findVideosByChannelId(@Param(&quot;channelId&quot;) Long channelId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-21 16:21</div>
+</div>
+</body>
+</html>

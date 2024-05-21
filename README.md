@@ -151,7 +151,7 @@ HTTP/1.1 200
 <subscribers>654</subscribers>
 </ChannelDto>
 Response file saved.
-2024-03-15T175733.200.xml`
+> 2024-03-15T175733.200.xml`
 
 ### Week 4
 
@@ -195,4 +195,19 @@ Response file saved.
 > **Profiles**
 >
 > dev profile - used for development, set as environment variable
+>
 > test profile - used for testing
+
+### Week 7
+
+> **MVC Tests**
+>
+> controllers/mvc/ChannelsControllerTest class
+
+> **API Tests**
+>
+> controllers/api/ChannelsControllerTest class
+
+> **Role verification tests**
+>
+> controllers/api/ChannelsControllerUnitTest

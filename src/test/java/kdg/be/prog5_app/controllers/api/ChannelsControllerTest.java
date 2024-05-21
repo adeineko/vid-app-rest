@@ -34,6 +34,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class ChannelsControllerTest {
     @Autowired
     private MockMvc mockMvc;
+
     @Autowired
     private ChannelRepository channelRepository;
 
@@ -42,7 +43,6 @@ class ChannelsControllerTest {
 
     private long createdChannelId;
 
-    //    private long createdIssueAssignmentId;
     @BeforeEach
     public void setupEach() {
         var createdChannel = channelRepository.save(
@@ -83,13 +83,13 @@ class ChannelsControllerTest {
                 .andDo(print());
     }
 
-//    @Test
-//    public void deleteChannelIsNotAllowedIfNotSignedIn() throws Exception {
-//        mockMvc.perform(
-//                        delete("/api/channels/{channelId}", createdChannelId)
-//                                .with(csrf()))
-//                .andExpect(status().isUnauthorized());
-//    }
+    @Test
+    public void deleteChannelIsNotAllowedIfNotSignedIn() throws Exception {
+        mockMvc.perform(
+                        delete("/api/channels/{channelId}", createdChannelId)
+                                .with(csrf()))
+                .andExpect(status().isUnauthorized());
+    }
 
     @Test
     @WithUserDetails("anna")
@@ -101,6 +101,15 @@ class ChannelsControllerTest {
 
         mockMvc.perform(get("/api/channels/{channelId}", createdChannelId)
                         .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithUserDetails("anna")
+    public void deleteChannelShouldReturnNotFoundIfChannelDoesNotExist() throws Exception {
+        mockMvc.perform(
+                        delete("/api/channels/{channelId}", 99999)
+                                .with(csrf()))
                 .andExpect(status().isNotFound());
     }
 

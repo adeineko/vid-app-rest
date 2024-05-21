@@ -6,12 +6,15 @@ import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
 import kdg.be.prog5_app.domain.ChannelVideo;
+import kdg.be.prog5_app.domain.User;
 import kdg.be.prog5_app.exceptions.UserNotFoundException;
+import kdg.be.prog5_app.security.CustomUserDetails;
 import kdg.be.prog5_app.services.ChannelService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -80,8 +83,9 @@ public class ChannelsController {
 
     @DeleteMapping("{id}")
     ResponseEntity<Void> deleteChannel(@PathVariable("id") long channelId,
+                                       @AuthenticationPrincipal CustomUserDetails user,
                                        HttpServletRequest request) {
-        if (!request.isUserInRole(ADMIN.getCode())) {
+        if (user == null || !request.isUserInRole(ADMIN.getCode())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         if (channelService.removeChannel(channelId)) {
