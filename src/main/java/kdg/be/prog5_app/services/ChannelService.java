@@ -1,7 +1,6 @@
 package kdg.be.prog5_app.services;
 
 import kdg.be.prog5_app.domain.Channel;
-import kdg.be.prog5_app.domain.Video;
 import kdg.be.prog5_app.repositories.ChannelRepository;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
 import kdg.be.prog5_app.repositories.UserRepository;
@@ -45,25 +44,17 @@ public class ChannelService {
         return channelRepository.showAllChannels();
     }
 
-//    public List<Video> findVideosByChannelId(Long channelId) {
-//        return channelRepository.findVideosByChannelId(channelId);
-//    }
-
     public Channel getChannelWithVideos(long channelId) {
         return channelRepository.findByIdWithVideos(channelId).orElse(null);
     }
 
-//    public List<Video> getVideoOfChannel(long channelId) {
-//        return channelRepository.findVideosByChannelId(channelId);
-//    }
-
     public Channel addChannel(String name, LocalDate date, int subscribers) {
-       /* var user = userRepository.findById(userId).orElse(null);*/
+        /* var user = userRepository.findById(userId).orElse(null);*/
         var channel = new Channel(name, date, subscribers);
         return channelRepository.save(channel);
     }
 
-    public boolean changeChannelName(long channelId, String newName, int newSubscribers) {
+    public boolean changeChannelNameAndSubscribers(long channelId, String newName, int newSubscribers) {
         var channel = channelRepository.findById(channelId).orElse(null);
         if (channel == null) {
             return false;

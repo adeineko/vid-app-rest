@@ -32,7 +32,7 @@ class ChannelServiceUnitTest {
         given(channelRepository.findById(7777L)).willReturn(Optional.empty());
 
         // Act
-        var updateSucceeded = channelService.changeChannelName(7777L, "test name", 34);
+        var updateSucceeded = channelService.changeChannelNameAndSubscribers(7777L, "test name", 34);
 
         // Assert
         assertFalse(updateSucceeded);
@@ -47,7 +47,7 @@ class ChannelServiceUnitTest {
         given(channelRepository.findById(7777L)).willReturn(Optional.of(channel));
 
         // Act
-        var updateSucceeded = channelService.changeChannelName(7777L, "test name", 34);
+        var updateSucceeded = channelService.changeChannelNameAndSubscribers(7777L, "test name", 34);
 
         // Assert
         assertTrue(updateSucceeded);
@@ -56,4 +56,33 @@ class ChannelServiceUnitTest {
         assertEquals("test name", channelCaptor.getValue().getName());
         assertEquals(34, channelCaptor.getValue().getSubscribers());
     }
+
+    @Test
+    void removeChannelFailsWhenChannelDoesntExist() {
+        // Arrange
+        given(channelRepository.findById(7777L)).willReturn(Optional.empty());
+
+        // Act
+        var deleteSucceeded = channelService.removeChannel(7777L);
+
+        // Assert
+        assertFalse(deleteSucceeded);
+        verify(channelRepository, never()).save(any());
+    }
+
+//    @Test
+//    void deleteChannelSucceedsWhenChannelExists() {
+//        // Arrange
+//        var channel = new Channel("name", LocalDate.of(2022, 12, 5), 56);
+//        channel.setId(7777);
+//        given(channelRepository.findById(7777L)).willReturn(Optional.of(channel));
+//
+//        // Act
+//        var deleteSucceeded = channelService.removeChannel(7777L);
+//        // Assert
+//        assertTrue(deleteSucceeded);
+//        ArgumentCaptor<Channel> channelCaptor = ArgumentCaptor.forClass(Channel.class);
+//        verify(channelRepository).save(channelCaptor.capture());
+//
+//    }
 }

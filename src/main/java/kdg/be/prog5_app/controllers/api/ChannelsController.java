@@ -6,7 +6,6 @@ import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
 import kdg.be.prog5_app.domain.ChannelVideo;
-import kdg.be.prog5_app.domain.User;
 import kdg.be.prog5_app.exceptions.UserNotFoundException;
 import kdg.be.prog5_app.security.CustomUserDetails;
 import kdg.be.prog5_app.services.ChannelService;
@@ -101,7 +100,7 @@ public class ChannelsController {
         if (!request.isUserInRole(ADMIN.getCode())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        if (channelService.changeChannelName(channelId, updateChannelDto.getName(), updateChannelDto.getSubscribers())) {
+        if (channelService.changeChannelNameAndSubscribers(channelId, updateChannelDto.getName(), updateChannelDto.getSubscribers())) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
