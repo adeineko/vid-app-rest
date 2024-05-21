@@ -213,4 +213,4 @@ Response file saved.
 > controllers/api/ChannelsControllerUnitTest
 > 
 ### Week 9
-![Screenshot 2024-05-21 224342.png](..%2F..%2F..%2FPictures%2FScreenshots%2FScreenshot%202024-05-21%20224342.png)
+![Screenshot](Screenshot.png)
