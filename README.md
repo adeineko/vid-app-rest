@@ -212,5 +212,7 @@ Response file saved.
 >
 > controllers/api/ChannelsControllerUnitTest
 > 
-### Week 9
+### Week 8
+**Code coverage**
 ![Screenshot](Screenshot.png)
+### Week 9

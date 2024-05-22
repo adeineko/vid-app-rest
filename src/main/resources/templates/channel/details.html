@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- Navbar Fragment -->
-<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div th:replace="~{fragments/navbar :: navbar(page='details')}"></div>
 
 <div class="container">
     <input id="channelId" type="hidden" th:value="${channel.id}">

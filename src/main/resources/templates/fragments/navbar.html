@@ -29,7 +29,12 @@
                            th:classappend="${page == 'comments'} ? 'active' : ''">Comments</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/videos}" th:classappend="${page == 'videos'} ? 'active' : ''">Videos</a>
+                        <a class="nav-link" th:href="@{/videos}"
+                           th:classappend="${page == 'videos'} ? 'active' : ''">Videos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/search-channels}"
+                           th:classappend="${page == 'search-channels'} ? 'active' : ''">Search channels</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">

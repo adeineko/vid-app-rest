@@ -106,4 +106,25 @@ public class ChannelsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping
+    ResponseEntity<List<ChannelDto>> searchIssues(@RequestParam(required = false) String search) {
+        if (search == null) {
+            return ResponseEntity
+                    .ok(channelService.getChannels()
+                            .stream()
+                            .map(channel -> modelMapper.map(channel, ChannelDto.class))
+                            .toList());
+        } else {
+            var searchResult = channelService.searchChannelsByName(search);
+            if (searchResult.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            } else {
+                return ResponseEntity.ok(searchResult
+                        .stream()
+                        .map(channel -> modelMapper.map(channel, ChannelDto.class))
+                        .toList());
+            }
+        }
+    }
 }

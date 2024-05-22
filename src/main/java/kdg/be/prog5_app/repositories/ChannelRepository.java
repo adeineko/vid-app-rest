@@ -28,4 +28,6 @@ public interface ChannelRepository extends JpaRepository<Channel, Long> {
 
     @Query("SELECT cv.video FROM ChannelVideo cv WHERE cv.channel.id = :channelId")
     List<Video> findVideosByChannelId(@Param("channelId") Long channelId);
+
+    List<Channel> getChannelsByNameLike(String searchName);
 }

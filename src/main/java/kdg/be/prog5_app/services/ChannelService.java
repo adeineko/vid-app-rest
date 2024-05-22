@@ -64,4 +64,8 @@ public class ChannelService {
         channelRepository.save(channel);
         return true;
     }
+
+    public List<Channel>searchChannelsByName(String searchName) {
+        return channelRepository.getChannelsByNameLike(searchName);
+    }
 }

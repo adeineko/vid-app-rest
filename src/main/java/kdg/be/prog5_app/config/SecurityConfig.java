@@ -21,7 +21,9 @@ public class SecurityConfig {
             throws Exception {
         http.authorizeHttpRequests(
                         auths -> auths
-                                .requestMatchers(regexMatcher("^/(cdhannel\\?.+|channels|videos|comments\\?.+|search-channels)"))
+                                .requestMatchers(regexMatcher("^/(channel\\?.+|channels|videos|comments\\?.+|search-channels)"),
+                                        regexMatcher(HttpMethod.GET, "^/login\\?.*"),
+                                        regexMatcher(HttpMethod.GET, "^/error"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
@@ -40,8 +42,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/"))
                                 .permitAll()
-                                .requestMatchers(antMatcher(HttpMethod.GET, "/add"))
-                                .hasRole("ADMIN")
+//                                .requestMatchers(antMatcher(HttpMethod.GET, "/add"))
+//                                .hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )

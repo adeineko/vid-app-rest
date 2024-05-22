@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search channels</title>
+    <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
+    <script src="/js/bundle-search-channels.js" defer></script>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar(page='search-channels')}"></div>
+<main class="container">
+    <h1>Search channels</h1>
+    <form id="searchForm">
+        <div class="mb-3">
+            <label for="searchTerm" class="form-label">Search term</label>
+            <input type="text" class="form-control" id="searchTerm" aria-describedby="searchHelp">
+            <div id="searchHelp" class="form-text">Start typing name to search.</div>
+        </div>
+    </form>
+
+    <section id="searchResultsSection">
+        <h2 class="mt-5">Channels Found</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+</body>
+</html>
