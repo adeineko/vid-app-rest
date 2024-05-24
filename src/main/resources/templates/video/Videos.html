@@ -3,6 +3,7 @@
 <head>
     <title>Videos</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
+    <script src="/js/bundle-videos.js" defer></script>
 </head>
 <body>
 <!-- Navbar Fragment -->
@@ -21,8 +22,8 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="video:${video}">
+            <tbody id="videoTableBody">
+            <tr th:id="'video_' + ${video.id}" th:each="video:${videos}">
                 <td th:text="${video.id}"></td>
                 <td>
                     <a th:text="${video.title}" th:href="@{/videos/{id}(id=${video.id})}"></a>
@@ -31,9 +32,9 @@
                 <td th:text="${video.link}"></td>
                 <td th:text="${video.genre}"></td>
                 <td>
-                    <form th:action="@{'/videos/delete/' + ${video.id}}" th:method="post">
-                        <button type="submit" class="btn btn-outline-danger">Delete</button>
-                    </form>
+                    <button type="button" class="btn btn-outline-danger">
+                        <i class="bi bi-trash3"></i> Delete
+                    </button>
                 </td>
             </tr>
             </tbody>

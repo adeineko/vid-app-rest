@@ -21,19 +21,17 @@ public class Video {
     @Enumerated(EnumType.STRING)
     private VideoGenre genre;
 
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "video")
+    @OneToMany(/*cascade = CascadeType.REMOVE,*/ mappedBy = "video")
     private List<ChannelVideo> revenues;
 
     public Video() {
     }
 
-    public Video(int id, String title, int views, String link, VideoGenre genre, List<ChannelVideo> revenues) {
-        this.id = id;
+    public Video(String title, int views, String link, VideoGenre genre) {
         this.title = title;
         this.views = views;
         this.link = link;
         this.genre = genre;
-        this.revenues = revenues;
     }
 
     public Video(int id, String title, int views, String link, VideoGenre genre) {

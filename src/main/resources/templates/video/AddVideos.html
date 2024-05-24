@@ -3,6 +3,7 @@
 <head>
     <title>Add Videos</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
+    <script src="/js/bundle-addVideos.js" defer></script>
 </head>
 <body>
 
@@ -10,29 +11,27 @@
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <div class="container">
-    <form th:action="create" th:method="post" th:object="${getPage}">
-
-
+    <form>
         <div class="mb-3">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" th:field="*{title}" id="title" name="title" class="form-control" required>
+            <label for="titleInput" class="form-label">Title:</label>
+            <input type="text" id="titleInput" name="title" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="views" class="form-label">Views:</label>
-            <input type="number" th:field="*{views}" id="views" name="views" class="form-control" required>
+            <label for="viewsInput" class="form-label">Views:</label>
+            <input type="number" id="viewsInput" name="views" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="link" class="form-label">Link:</label>
-            <input type="text" th:field="*{link}" id="link" name="link" class="form-control"
+            <label for="linkInput" class="form-label">Link:</label>
+            <input type="text" id="linkInput" name="link" class="form-control"
                    required>
         </div>
         <div class="mb-3">
-            <label for="link" class="form-label">Genre:</label>
+            <label for="genreInput" class="form-label">Genre:</label>
             <select name="genre">
                 <option th:each="genre : ${T(kdg.be.prog5_app.domain.VideoGenre).values()}"
-                        th:value="${genre}" th:text="${genre.displayValue}" th:field="*{genre}"></option>
+                        th:value="${genre}" th:text="${genre.displayValue}" id="genreInput"></option>
             </select>
         </div>
         <div class="mb-3">
@@ -44,7 +43,7 @@
         </div>
         <p>No existing channel? Add channel first.</p>
 
-        <button type="submit" class="btn btn-outline-dark">Add</button>
+        <button type="submit" class="btn btn-outline-dark" id="addButton">Add</button>
 
     </form>
 </div>

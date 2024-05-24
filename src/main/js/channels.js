@@ -1,8 +1,6 @@
 import {header, token} from './util/csrf.js'
 import anime from 'animejs'
 
-
-console.log('channels.js')
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger')
 
 for (const deleteButton of deleteButtons) {
