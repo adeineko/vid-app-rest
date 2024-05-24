@@ -35,6 +35,10 @@ test:
       POSTGRES_PASSWORD: '12345'
       CI_DB_HOST_PORT: 'postgres:5432'
   script: gradle check
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
