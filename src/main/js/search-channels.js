@@ -1,11 +1,10 @@
 import '../scss/search.scss'
+import anime from 'animejs'
 
 const searchResultsSection = document.getElementById('searchResultsSection')
 const searchTermInput = document.getElementById('searchTerm')
 const tableBody = document.getElementsByTagName('tbody')[0]
 const searchForm = document.getElementById('searchForm')
-
-console.log('searchChannels js')
 
 async function searchChannels() {
     const response = await fetch(`/api/channels?search=${searchTermInput.value}`,
@@ -17,14 +16,21 @@ async function searchChannels() {
             tableBody.innerHTML += `
                 <tr>
                     <td>${channel.name}</td>
-                    <td><a href="/channel?id=${channel.id}">Details</a></td>
+                    <td><a href="/channel/${channel.id}">Details</a></td>
                 </tr>
             `
         }
-
-        searchResultsSection.style.display = 'block'
+        // searchResultsSection.style.display = 'block'
+        anime({
+            targets: searchResultsSection,
+            opacity: [0, 1],
+            duration: 500,
+            easing: 'easeInOutQuad',
+            begin: function() {
+                searchResultsSection.style.display = 'block'
+            }
+        })
     } else {
-        console.log('nothing found')
         searchResultsSection.style.display = 'none'
     }
 }

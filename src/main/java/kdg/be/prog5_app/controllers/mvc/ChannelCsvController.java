@@ -34,7 +34,6 @@ public class ChannelCsvController {
         var mav = new ModelAndView("channel/channels-csv");
         channelService.processChannelsCsv(file.getInputStream());
         mav.addObject("inProgress", true);
-
         return mav;
     }
 
