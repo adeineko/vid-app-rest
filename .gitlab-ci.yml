@@ -9,7 +9,7 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
 
-image: gradle:alpine
+image: larsdroid/jdk-gradle-node:21-8.7.0-20.12.1-alpine
 
 before_script:
   - GRADLE_USER_HOME="$(pwd)/.gradle"
@@ -27,6 +27,13 @@ build:
 
 test:
   stage: test
+  services:
+      - postgres:16.1-alpine
+  variables:
+      POSTGRES_DB: 'videoplatform'
+      POSTGRES_USER: '12345'
+      POSTGRES_PASSWORD: '12345'
+      CI_DB_HOST_PORT: 'postgres:5432'
   script: gradle check
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -34,8 +41,3 @@ test:
     paths:
       - build
       - .gradle
-
-deploy:
-  stage: deploy
-  script: echo "Define your deployment script!"
-  environment: production

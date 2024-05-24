@@ -71,7 +71,7 @@ class ChannelsControllerUnitTest {
 
         verify(channelService).removeChannel(channelId);
     }
-
+//TODO: check this test
     @Test
     public void deleteChannelShouldBeNotFoundIfChannelDoesntExist() throws Exception {
         given(channelService.removeChannel(channelId)).willReturn(false);
