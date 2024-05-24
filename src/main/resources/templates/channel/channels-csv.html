@@ -10,7 +10,25 @@
 <div th:replace="~{fragments/navbar :: navbar(page = 'channels-csv')}"></div>
 
 <main class="container">
-    <h1>Upload Issues CSV</h1>
+    <h1>Upload Channels CSV</h1>
+    <form th:action="@{/channels-csv}"
+          th:method="POST"
+          enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="channels-csv" class="form-label">
+                Select a file to upload</label>
+            <input class="form-control"
+                   type="file"
+                   name="channels-csv"
+                   id="channels-csv"/>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">
+                Upload
+            </button>
+        </div>
+    </form>
+<p th:if="${inProgress}">Processing your file...</p>
 </main>
 
 </body>

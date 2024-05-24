@@ -5,23 +5,26 @@ import kdg.be.prog5_app.repositories.ChannelRepository;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
 import kdg.be.prog5_app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Scanner;
+
+import static org.hibernate.sql.results.LoadingLogger.LOGGER;
 
 @Service
 public class ChannelService {
     private final ChannelRepository channelRepository;
     private final ChannelVideoRepository channelVideoRepository;
-//    private final UserRepository userRepository;
 
     @Autowired
     public ChannelService(ChannelRepository channelRepository, ChannelVideoRepository channelVideoRepository, UserRepository userRepository) {
         this.channelRepository = channelRepository;
         this.channelVideoRepository = channelVideoRepository;
-//        this.userRepository = userRepository;
     }
 
     public Channel getChannel(Long id) {
@@ -49,7 +52,6 @@ public class ChannelService {
     }
 
     public Channel addChannel(String name, LocalDate date, int subscribers) {
-        /* var user = userRepository.findById(userId).orElse(null);*/
         var channel = new Channel(name, date, subscribers);
         return channelRepository.save(channel);
     }
@@ -65,7 +67,20 @@ public class ChannelService {
         return true;
     }
 
-    public List<Channel>searchChannelsByName(String searchName) {
+    public List<Channel> searchChannelsByName(String searchName) {
         return channelRepository.getChannelsByNameLike(searchName);
+    }
+
+    @Async
+    public void processChannelsCsv(InputStream inputStream) {
+        Scanner scanner = new Scanner(inputStream);
+        String line = scanner.nextLine();
+        //var columns = line.split(","); repo create channel ...
+        LOGGER.info(line);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+//            e.printStackTrace();
+        }
     }
 }
