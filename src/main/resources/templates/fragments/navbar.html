@@ -36,6 +36,10 @@
                         <a class="nav-link" th:href="@{/search-channels}"
                            th:classappend="${page == 'search-channels'} ? 'active' : ''">Search channels</a>
                     </li>
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link" th:href="@{/channels-csv}"
+                           th:classappend="${page == 'channels-csv'} ? 'active' : ''">Upload csv</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item me-2 pt-2" sec:authorize="isAuthenticated()">

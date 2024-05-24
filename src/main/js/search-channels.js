@@ -5,6 +5,7 @@ const searchTermInput = document.getElementById('searchTerm')
 const tableBody = document.getElementsByTagName('tbody')[0]
 const searchForm = document.getElementById('searchForm')
 
+console.log('searchChannels js')
 
 async function searchChannels() {
     const response = await fetch(`/api/channels?search=${searchTermInput.value}`,
@@ -23,6 +24,7 @@ async function searchChannels() {
 
         searchResultsSection.style.display = 'block'
     } else {
+        console.log('nothing found')
         searchResultsSection.style.display = 'none'
     }
 }

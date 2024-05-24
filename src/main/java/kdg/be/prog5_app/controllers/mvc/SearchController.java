@@ -9,4 +9,8 @@ public class SearchController {
     public String searchChannels() {
         return "channel/search-channels";
     }
+    @GetMapping("/channels-csv")
+    public String uploadCsvChannels() {
+        return "channel/channels-csv";
+    }
 }
