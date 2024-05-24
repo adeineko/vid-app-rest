@@ -39,7 +39,6 @@ function addButtonClicked(event) {
     trySubmitFrom()
 }
 
-/*Check first than add the channel*/
 function trySubmitFrom() {
     const schema = Joi.object({
         name: Joi.string()

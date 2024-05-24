@@ -21,7 +21,7 @@ public class Video {
     @Enumerated(EnumType.STRING)
     private VideoGenre genre;
 
-    @OneToMany(/*cascade = CascadeType.REMOVE,*/ mappedBy = "video")
+    @OneToMany(mappedBy = "video")
     private List<ChannelVideo> revenues;
 
     public Video() {

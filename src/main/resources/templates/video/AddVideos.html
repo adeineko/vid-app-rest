@@ -3,7 +3,7 @@
 <head>
     <title>Add Videos</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
-    <script src="/js/bundle-addVideos.js" defer></script>
+    <script src="/js/bundle-addVideo.js" defer></script>
 </head>
 <body>
 
@@ -34,29 +34,12 @@
                         th:value="${genre}" th:text="${genre.displayValue}" id="genreInput"></option>
             </select>
         </div>
-        <div class="mb-3">
-            <label for="channels" class="form-label">Choose channel:</label>
-            <select name="channels" id="channels">
-                <option th:each="channel : ${channels}"
-                        th:value="${channel}" th:text="${channel.name}"></option>
-            </select>
-        </div>
-        <p>No existing channel? Add channel first.</p>
+<!--        <p>No existing channel? Add channel first.</p>-->
 
-        <button type="submit" class="btn btn-outline-dark" id="addButton">Add</button>
+        <button type="submit" class="btn btn-outline-dark" id="addButton">Add video</button>
 
     </form>
 </div>
-<div th:if="${message}" class="alert alert-success alert-dismissible fade show container mt-3" role="alert">
-    <p th:text="${message}"></p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
-<div th:if="${message2}" class="alert alert-danger alert-dismissible fade show container mt-3" role="alert">
-    <p th:text="${message2}"></p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
 <!-- Footer Fragment -->
 <div th:replace="~{fragments/footer :: footer}"></div>
 

@@ -53,4 +53,6 @@ public class ChannelVideo {
     public void setVideo(Video video) {
         this.video = video;
     }
+
+
 }

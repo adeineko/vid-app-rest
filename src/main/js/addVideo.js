@@ -1,13 +1,12 @@
 import {addVideoToHtmlTable} from './videos.js'
 
-const titleInput = document.getElementById('nameInput')
+const titleInput = document.getElementById('titleInput')
 const viewsInput = document.getElementById('viewsInput')
 const linkInput = document.getElementById('linkInput')
 const genreInput = document.getElementById('genreInput')
 const addButton = document.getElementById('addButton')
 
-async function addNewChannel() {
-
+async function addNewVideo() {
     const response = await fetch('/api/videos', {
         method: 'POST',
         headers: {
@@ -23,7 +22,7 @@ async function addNewChannel() {
     })
     if (response.status === 201) {
         /**
-         * @type {{id: number, name: string, date: localDate, subscribers: number}}
+         * @type {{id: number, title: string, views: number, link: string, genre: VideoGenre}}
          */
         const video = await response.json()
         addVideoToHtmlTable(video)
@@ -32,4 +31,4 @@ async function addNewChannel() {
     }
 }
 
-addButton?.addEventListener('click', addNewChannel)
+addButton?.addEventListener('click', addNewVideo)

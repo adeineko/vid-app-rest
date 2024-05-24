@@ -16,15 +16,18 @@ import java.util.Optional;
 public interface VideoRepository extends JpaRepository<Video, Long> {
     @Query("SELECT videos FROM Video videos")
     List<Video> showAllVideos();
-
-    Optional<Video> findByTitle(String name);
-
+    @Query("""
+            select video from Video video
+            left join fetch video.revenues channels
+            left join fetch channels.channel
+            where video.id = :videoId
+            """)
+    Optional<Channel> findByIdWithChannels(long videoId);
     Optional<Video> findById(long videoId);
-
     Video save(Video video);
 
     //    @Query("DELETE FROM Video videos WHERE videos.id = :videoId")
-    Video deleteById(long videoId);
+//    Video deleteById(long videoId);
 
     @Query("DELETE FROM ChannelVideo cv WHERE cv.video.id = :videoId")
     Video deleteByIdFromChannelVideo(@Param("videoId") long videoId);
