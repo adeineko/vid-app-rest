@@ -10,4 +10,9 @@ public class SearchController {
         return "channel/search-channels";
     }
 
+    @GetMapping("/search-videos")
+    public String searchVideos() {
+        return "video/search-videos";
+    }
+
 }
