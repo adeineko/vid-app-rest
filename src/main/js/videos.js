@@ -1,4 +1,6 @@
 import anime from 'animejs'
+import {token, header} from './util/csrf.js'
+
 
 const videoTableBody = document.getElementById('videoTableBody')
 const deleteButtons = document.querySelectorAll('button.btn-outline-danger')
@@ -11,7 +13,8 @@ async function handleDelete(event) {
     const rowId = event.target.parentNode.parentNode.id
     const videoId = parseInt(rowId.substring(rowId.indexOf('_') + 1))
     const response = await fetch(`/api/videos/${videoId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        [header]: token
     })
     if (response.status === 204) {
         const row = document.getElementById(`video_${videoId}`)

@@ -42,7 +42,12 @@ public class VideosController {
     }
 
     @DeleteMapping("{id}")
-    ResponseEntity<Void> deleteVideo(@PathVariable("id") long videoId) {
+    ResponseEntity<Void> deleteVideo(@PathVariable("id") long videoId,
+                                     @AuthenticationPrincipal CustomUserDetails user,
+                                     HttpServletRequest request) {
+        if (user == null || !request.isUserInRole(ADMIN.getCode())) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         if (videoService.removeVideo(videoId)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

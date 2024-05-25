@@ -21,9 +21,12 @@ public class SecurityConfig {
             throws Exception {
         http.authorizeHttpRequests(
                         auths -> auths
-                                .requestMatchers(regexMatcher("^/(channel\\?.+|channels|videos|comments\\?.+|search-channels)"),
-                                        regexMatcher(HttpMethod.GET, "^/login\\?.*"),
+                                .requestMatchers(
+//                                        regexMatcher("^/(channel\\?.+|channels|videos|comments\\?.+|search-channels)"),
+                                        regexMatcher("^/(channels|videos/?.*|search-channels|login|signup|)?"),
+//                                        regexMatcher(HttpMethod.GET, "^/login\\?.*"),
                                         regexMatcher(HttpMethod.GET, "^/error"))
+//                                        antMatcher(HttpMethod.GET, "^/signup/**"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
@@ -33,20 +36,18 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/api/**"),
-                                        antMatcher(HttpMethod.POST, "/api/**"),
-                                        antMatcher(HttpMethod.GET, "/js/login.js"),
-                                        antMatcher(HttpMethod.POST, "/js/signup.js"),
-                                        antMatcher(HttpMethod.GET, "/js/signup.js"),
-                                        antMatcher(HttpMethod.GET, "/signup/**")
+                                        antMatcher(HttpMethod.POST, "/api/signup/**")
                                 )
                                 .permitAll()
-                                .requestMatchers(antMatcher(HttpMethod.GET, "/"))
+                                .requestMatchers(
+                                        antMatcher(HttpMethod.POST, "/api/videos"))
                                 .permitAll()
-//                                .requestMatchers(antMatcher(HttpMethod.GET, "/add"))
-//                                .hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )
+                .csrf(csrf -> csrf.ignoringRequestMatchers(
+                        antMatcher(HttpMethod.POST, "/api/videos/**")// Disable specifically for the client application
+                ))
                 .formLogin(formLogin ->
                         formLogin.loginPage("/login")
                                 .permitAll())

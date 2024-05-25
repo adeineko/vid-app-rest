@@ -27,7 +27,7 @@ async function addNewVideo() {
         const video = await response.json()
         addVideoToHtmlTable(video)
     } else {
-        alert('Something went wrong!')
+        alert(response.status)
     }
 }
 
