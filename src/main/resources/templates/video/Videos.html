@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Videos</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
@@ -32,7 +33,7 @@
                 <td th:text="${video.link}"></td>
                 <td th:text="${video.genre}"></td>
                 <td>
-                    <button type="button" class="btn btn-outline-danger">
+                    <button type="button" class="btn btn-outline-danger" sec:authorize="hasRole('ROLE_ADMIN')">
                         <i class="bi bi-trash3"></i> Delete
                     </button>
                 </td>

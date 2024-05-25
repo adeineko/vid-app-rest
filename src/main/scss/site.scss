@@ -1,4 +1,65 @@
-/*styling for all pages here*/
 @use "variables" as *;
 @import "bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #f8f9fa;
+  padding: 10px;
+
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    .nav-item {
+      position: relative;
+
+      .nav-link {
+        text-decoration: none;
+        padding: 10px;
+        color: #000;
+        display: block;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        min-width: 200px;
+        z-index: 1000;
+
+        .dropdown-item {
+          padding: 10px;
+          text-decoration: none;
+          color: #000;
+          display: block;
+
+          &:hover {
+            background-color: #f1f1f1;
+          }
+        }
+      }
+
+      &:hover .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}

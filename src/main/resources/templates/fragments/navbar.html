@@ -20,9 +20,17 @@
             <a class="navbar-brand" th:href="@{/}">Main page</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/channels}"
-                           th:classappend="${page == 'channels'} ? 'active' : ''">Channels</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Channels
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/channels}"
+                               th:classappend="${page == 'channels'} ? 'active' : ''">Channels</a>
+                            <a class="dropdown-item" th:href="@{/search-channels}"
+                               th:classappend="${page == 'search-channels'} ? 'active' : ''">Search Channels</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/comments}"
@@ -31,10 +39,6 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/videos}"
                            th:classappend="${page == 'videos'} ? 'active' : ''">Videos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/search-channels}"
-                           th:classappend="${page == 'search-channels'} ? 'active' : ''">Search channels</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a class="nav-link" th:href="@{/channels-csv}"

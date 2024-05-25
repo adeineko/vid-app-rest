@@ -4,7 +4,9 @@ import kdg.be.prog5_app.services.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/videos")
@@ -32,10 +34,4 @@ public class VideoController {
         model.addAttribute("video", videoService.getVideo(id));
         return "video/details";
     }
-
-//    @PostMapping("delete/{id}")
-//    public String deleteVideo(@PathVariable(value = "id") Long id) {
-//        videoService.deleteVideo(id);
-//        return "redirect:/videos";
-//    }
 }
