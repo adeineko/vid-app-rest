@@ -5,7 +5,6 @@ import kdg.be.prog5_app.domain.VideoGenre;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
 import kdg.be.prog5_app.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,17 +38,9 @@ public class VideoService {
         if (video.isEmpty()) {
             return false;
         }
-//        channelVideoRepository.deleteAll(video.get().getVideos());
+        channelVideoRepository.deleteAll(video.get().getChannels());
         videoRepository.deleteById(videoId);
         return true;
-    }
-
-    public void deleteVideo(long id) {
-        videoRepository.deleteById(id);
-    }
-
-    public Video deleteVideoFromChannelVideo(long videoId) {
-        return videoRepository.deleteByIdFromChannelVideo(videoId);
     }
 
     public Optional<Video> getVideo(long id) {

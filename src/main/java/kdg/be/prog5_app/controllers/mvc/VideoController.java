@@ -33,9 +33,9 @@ public class VideoController {
         return "video/details";
     }
 
-    @PostMapping("delete/{id}")
-    public String deleteVideo(@PathVariable(value = "id") Long id) {
-        videoService.deleteVideo(id);
-        return "redirect:/videos";
-    }
+//    @PostMapping("delete/{id}")
+//    public String deleteVideo(@PathVariable(value = "id") Long id) {
+//        videoService.deleteVideo(id);
+//        return "redirect:/videos";
+//    }
 }

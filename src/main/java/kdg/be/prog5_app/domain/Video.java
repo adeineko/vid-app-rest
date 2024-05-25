@@ -22,7 +22,7 @@ public class Video {
     private VideoGenre genre;
 
     @OneToMany(mappedBy = "video")
-    private List<ChannelVideo> revenues;
+    private List<ChannelVideo> channels;
 
     public Video() {
     }
@@ -87,11 +87,11 @@ public class Video {
         this.genre = genre;
     }
 
-    public List<ChannelVideo> getRevenues() {
-        return revenues;
+    public List<ChannelVideo> getChannels() {
+        return channels;
     }
 
-    public void setRevenues(List<ChannelVideo> revenues) {
-        this.revenues = revenues;
+    public void setChannels(List<ChannelVideo> revenues) {
+        this.channels = revenues;
     }
 }
