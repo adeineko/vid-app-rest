@@ -215,4 +215,24 @@ Response file saved.
 ### Week 8
 **Code coverage**
 ![Screenshot](Screenshot.png)
-### Week 9
+### Week 11
+**Bootstrap icon**
+>[Video page](http://localhost:8080/videos) - Add video button
+>[Source file](src/main/resources/templates/video/AddVideos.html)
+
+**Client-side validation**
+>[Add channel](http://localhost:8080/videos/add)
+>
+> [Source file](src/main/js/addChannel.js)
+
+**JavaScript dependencies**
+>Install three.js - run from the command line `npm i three`
+>[Source file](src/main/js/main.js)
+> 
+> Install TypeScript - run from the command line `npm install typescript --save-dev`
+>Than run TS compiler `tsc -w`
+> [Source file](script/comments.ts)
+
+>[Three.js](http://localhost:8080/)
+> 
+> [Typescript](http://localhost:8080/comments)
