@@ -1,18 +1,18 @@
 import '../scss/site.scss'
 import 'bootstrap'
 
-document.addEventListener('DOMContentLoaded', () => {
-    const dropdownToggle = document.getElementById('channelsDropdown')
-    const dropdownMenu = document.getElementById('channelsDropdownMenu')
+const alertContainer = document.getElementById('alert-container')
 
-    dropdownToggle.addEventListener('click', (event) => {
-        event.preventDefault()
-        dropdownMenu.classList.toggle('show')
-    })
+export function showAlert(message, type) {
+    alertContainer.innerHTML = ''
+    const alertDiv = document.createElement('div')
+    alertDiv.className = `alert ${type}`
+    alertDiv.textContent = message
+    alertContainer.appendChild(alertDiv)
+    alertDiv.style.display = 'block'
 
-    document.addEventListener('click', (event) => {
-        if (!dropdownToggle.contains(event.target)) {
-            dropdownMenu.classList.remove('show')
-        }
-    })
-})
+    setTimeout(() => {
+        alertDiv.style.display = 'none'
+    }, 3000)
+}
+

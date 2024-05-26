@@ -1,5 +1,6 @@
 package kdg.be.prog5_app.repositories;
 
+import kdg.be.prog5_app.domain.Channel;
 import kdg.be.prog5_app.domain.Video;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,5 +23,6 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
             where video.id = :videoId
             """)
     Optional<Video> findByIdWithChannels(long videoId);
+    List<Video> getVideosByTitleLike(String searchTerm);
 
 }

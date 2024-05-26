@@ -63,3 +63,19 @@ body {
     }
   }
 }
+
+.alert {
+  display: none;
+  padding: $alert-padding;
+  margin-top: 20px;
+  border-radius: $alert-border-radius;
+  color: #fff;
+
+  &.success {
+    background-color: $primary-color;
+  }
+
+  &.error {
+    background-color: $error-color;
+  }
+}

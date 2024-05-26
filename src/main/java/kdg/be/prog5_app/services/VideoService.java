@@ -1,5 +1,6 @@
 package kdg.be.prog5_app.services;
 
+import kdg.be.prog5_app.domain.Channel;
 import kdg.be.prog5_app.domain.Video;
 import kdg.be.prog5_app.domain.VideoGenre;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
@@ -41,6 +42,13 @@ public class VideoService {
         channelVideoRepository.deleteAll(video.get().getChannels());
         videoRepository.deleteById(videoId);
         return true;
+    }
+
+    public List<Video> searchVideosByName(
+            String searchTerm) {
+        return videoRepository
+                .getVideosByTitleLike(
+                        "%" + searchTerm + "%");
     }
 
     public Optional<Video> getVideo(long id) {

@@ -29,16 +29,12 @@
         </div>
         <div class="mb-3">
             <label for="genreInput" class="form-label">Genre:</label>
-            <select name="genre">
-                <option th:each="genre : ${T(kdg.be.prog5_app.domain.VideoGenre).values()}"
-                        th:value="${genre}" th:text="${genre.displayValue}" id="genreInput"></option>
+            <select id="genreInput" name="genre" class="form-select">
             </select>
         </div>
-<!--        <p>No existing channel? Add channel first.</p>-->
-
         <button type="submit" class="btn btn-outline-dark" id="addButton">Add video</button>
-
     </form>
+    <div id="alert-container"></div>
 </div>
 <!-- Footer Fragment -->
 <div th:replace="~{fragments/footer :: footer}"></div>

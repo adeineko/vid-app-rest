@@ -22,11 +22,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                         auths -> auths
                                 .requestMatchers(
-//                                        regexMatcher("^/(channel\\?.+|channels|videos|comments\\?.+|search-channels)"),
-                                        regexMatcher("^/(channels|videos/?.*|search-channels|login|signup|)?"),
-//                                        regexMatcher(HttpMethod.GET, "^/login\\?.*"),
+                                        regexMatcher("^/(channels|videos/?.*|search-channels|login|signup|search-videos)?"),
                                         regexMatcher(HttpMethod.GET, "^/error"))
-//                                        antMatcher(HttpMethod.GET, "^/signup/**"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),

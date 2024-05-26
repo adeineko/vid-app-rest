@@ -108,7 +108,7 @@ public class ChannelsController {
     }
 
     @GetMapping
-    ResponseEntity<List<ChannelDto>> searchIssues(@RequestParam(required = false) String search) {
+    ResponseEntity<List<ChannelDto>> searchChannels(@RequestParam(required = false) String search) {
         if (search == null) {
             return ResponseEntity
                     .ok(channelService.getChannels()

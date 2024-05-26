@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Channels
                         </a>
@@ -36,9 +36,17 @@
                         <a class="nav-link" th:href="@{/comments}"
                            th:classappend="${page == 'comments'} ? 'active' : ''">Comments</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/videos}"
-                           th:classappend="${page == 'videos'} ? 'active' : ''">Videos</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Videos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/videos}"
+                               th:classappend="${page == 'videos'} ? 'active' : ''">Videos</a>
+                            <a class="dropdown-item" th:href="@{/search-videos}"
+                               th:classappend="${page == 'search-videos'} ? 'active' : ''">Search Videos</a>
+                        </div>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                         <a class="nav-link" th:href="@{/channels-csv}"
