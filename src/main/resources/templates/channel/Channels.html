@@ -31,7 +31,7 @@
                 <td th:text="${channel.subscribers}"></td>
                 <td>
                     <button sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn btn-outline-danger">
-                        <i class="bi  bi-trash3"></i> Delete
+                        <i class="bi bi-trash3"></i> Delete
                     </button>
                 </td>
             </tr>
@@ -39,7 +39,8 @@
         </table>
     </div>
     <button sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-dark" tabindex="-1" type="button"
-            id="addChannelButton">Add Channel
+            id="addChannelButton">
+        <i class="bi bi-plus"></i>Add Channel
     </button>
 </div>
 <!-- Footer Fragment -->

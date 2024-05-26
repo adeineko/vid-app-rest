@@ -26,14 +26,18 @@
                 <td th:text="${comment.likes}"></td>
                 <td>
                     <form th:action="@{'/comments/delete/' + ${comment.id}}" th:method="post">
-                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="bi bi-trash3"></i>
+                            Delete
+                        </button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-    <a th:href="@{comments/add}" class="btn btn-outline-dark" tabindex="-1" role="button">Add Comment</a>
+    <a th:href="@{comments/add}" class="btn btn-outline-dark" tabindex="-1" role="button">
+        <i class="bi bi-plus"></i>Add Comment</a>
 </div>
 
 
