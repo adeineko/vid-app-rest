@@ -17,6 +17,12 @@
     "plugin:import/warnings"
   ],
   "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "scene|camera|unusedVariable|anotherUnusedVariable"
+      }
+    ],
     "comma-dangle": [
       "error",
       "never"

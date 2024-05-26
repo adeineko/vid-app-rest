@@ -8,7 +8,6 @@ function deleteComment(commentId: number): void {
       const commentRow = document.getElementById(`comment_${commentId}`)
       if (commentRow) {
         commentRow.remove()
-        console.log(`Comment with ID ${commentId} removed successfully.`)
       } else {
         alert(`Error: Comment row with ID ${commentId} not found`)
       }

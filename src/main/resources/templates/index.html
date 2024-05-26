@@ -4,17 +4,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Main page</title>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
+    <script src="js/bundle-main.js" defer></script>
+    <style>
+        #scene-container {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+        }
+
+        canvas {
+            position: absolute;
+            top: 200px;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
 <!-- Navbar Fragment -->
 <div th:replace="~{fragments/navbar :: navbar(page='')}"></div>
 
 <div class="container mt-3">
-    <div class="jumbotron">
+    <div id="scene-container" class="jumbotron">
         <h2 class="display-4">Welcome to my Video Platform!</h2>
         <p>Track your subscribers and comments easily!</p>
     </div>
-
 </div>
 
 <!-- Footer Fragment -->
