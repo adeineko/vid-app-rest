@@ -20,13 +20,12 @@ async function searchChannels() {
                 </tr>
             `
         }
-        // searchResultsSection.style.display = 'block'
         anime({
             targets: searchResultsSection,
             opacity: [0, 1],
             duration: 500,
             easing: 'easeInOutQuad',
-            begin: function() {
+            begin: function () {
                 searchResultsSection.style.display = 'block'
             }
         })

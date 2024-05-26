@@ -3,50 +3,12 @@
 <head>
     <thymeleaf th:replace="~{fragments/navbar :: meta_script_link}"/>
     <title>Unauthenticated</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        h1 {
-            color: #ff6347;
-        }
-
-        p {
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 <body>
-<div class="container">
+<div class="container" id="unauthenticated">
     <h1>Unauthorized Access</h1>
     <p>You are not authorized to access this page. Please sign in to continue.</p>
-    <a href="/login" class="btn">Sign In</a>
+    <a href="/login" class="btn btn-outline-danger">Sign In</a>
 </div>
 </body>
 </html>

@@ -82,3 +82,35 @@ body {
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+#unauthenticated {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: $background-color;
+  border-radius: $border-radius;
+  box-shadow: 0 0 10px $shadow-color;
+  text-align: center;
+
+  h1 {
+    color: $error-color;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: #fff;
+    text-decoration: none;
+    border-radius: $border-radius;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $primary-hover-color;
+    }
+  }
+}
