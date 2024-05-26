@@ -2,28 +2,18 @@ package kdg.be.prog5_app.controllers.api.dto;
 
 import java.time.LocalDate;
 
-public class ChannelDto {
-    private int id;
+public class NewChannelDto {
     private String name;
     private LocalDate date;
     private int subscribers;
 
-    public ChannelDto() {
+    public NewChannelDto() {
     }
 
-    public ChannelDto(int id, String name, LocalDate date, int subscribers) {
-        this.id = id;
+    public NewChannelDto(String name, LocalDate date, int subscribers) {
         this.name = name;
         this.date = date;
         this.subscribers = subscribers;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

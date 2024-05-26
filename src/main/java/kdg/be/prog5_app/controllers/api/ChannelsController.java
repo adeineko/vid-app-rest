@@ -3,6 +3,7 @@ package kdg.be.prog5_app.controllers.api;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.ChannelDto;
+import kdg.be.prog5_app.controllers.api.dto.NewChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.UpdateChannelDto;
 import kdg.be.prog5_app.controllers.api.dto.VideoDto;
 import kdg.be.prog5_app.domain.ChannelVideo;
@@ -33,7 +34,7 @@ public class ChannelsController {
     }
 
     @PostMapping
-    ResponseEntity<ChannelDto> addChannel(@RequestBody @Valid ChannelDto channelDto,
+    ResponseEntity<ChannelDto> addChannel(@RequestBody @Valid NewChannelDto channelDto,
                                           HttpServletRequest request) {
         if (!request.isUserInRole(ADMIN.getCode())) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
