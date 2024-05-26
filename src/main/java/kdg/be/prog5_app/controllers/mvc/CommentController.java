@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/comments")
 public class CommentController {
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @Autowired
     public CommentController(CommentService commentService) {
@@ -25,11 +25,11 @@ public class CommentController {
         return "comment/Comments";
     }
 
-    @PostMapping("delete/{id}")
-    public String deleteComment(@PathVariable(value = "id") Long id) {
-        commentService.deleteComment(id);
-        return "redirect:/comments";
-    }
+//    @PostMapping("delete/{id}")
+//    public String deleteComment(@PathVariable(value = "id") Long id) {
+//        commentService.deleteComment(id);
+//        return "redirect:/comments";
+//    }
 
     @GetMapping("/{id}")
     public String getComment(Model model, @PathVariable(value = "id") Long id) {

@@ -11,22 +11,28 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
     "animejs": "^3.2.2",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "joi": "^17.13.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
     "css-loader": "^7.1.1",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "mini-css-extract-plugin": "^2.9.0",
     "sass": "^1.77.1",
     "sass-loader": "^14.2.1",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.10.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint . --ext .ts"
   }
 }

@@ -47,7 +47,8 @@ public class SecurityConfig {
                                 .authenticated()
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
-                        antMatcher(HttpMethod.POST, "/api/videos/**")// Disable specifically for the client application
+                        antMatcher(HttpMethod.POST, "/api/videos/**"), // Disable specifically for the client application
+                       antMatcher(HttpMethod.DELETE, "/api/comments/**") // Disable specifically for ts
                 ))
                 .formLogin(formLogin ->
                         formLogin.loginPage("/login")

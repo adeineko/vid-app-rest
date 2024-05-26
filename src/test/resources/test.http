@@ -21,6 +21,11 @@ DELETE http://localhost:8080/api/videos/2
 Cookie: JSESSIONID=A70B94512FC9E2EEEA1D531183D1EEB6
 X-CSRF-TOKEN:ngIZDIC_wi2JXbVOyF-h7j4SnBGrZRfHwnFadLvso-FXjYg2qzQoPbiK9xSkbYV3-HKV2wYgsSjNBCfqo0NrEY7YlIBhvr0A
 
+### API: delete a video
+DELETE http://localhost:8080/api/comments/2
+Cookie: JSESSIONID=6CA8631AB76EF6CBDCD91DCF0DA561A4
+X-CSRF-TOKEN:lf-BloHY0bl8ExDfeJRHwfejOMGrdFpvUJK6kAFIt7T3m8r8rZ3l87G844xRI3TrGblz9sSRFfnKEGhCZ6uD9jl8hYDOq_2Z
+
 ### API: delete a channel (not found)
 DELETE http://localhost:8080/api/channels/90
 

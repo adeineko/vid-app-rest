@@ -12,11 +12,4 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("SELECT comments FROM Comment comments")
     List<Comment> showAllComments();
 
-    List<Comment> findByText(String words);
-
-    Comment findById(long id);
-
-    Comment save(Comment comment);
-
-    Comment deleteById(long id);
 }
