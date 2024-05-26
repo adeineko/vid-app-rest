@@ -22,8 +22,9 @@ public class SecurityConfig {
         http.authorizeHttpRequests(
                         auths -> auths
                                 .requestMatchers(
-                                        regexMatcher("^/(channels|videos/?.*|search-channels|login|signup|search-videos)?"),
-                                        regexMatcher(HttpMethod.GET, "^/error"))
+                                        regexMatcher("^/(channels|videos/?.*|search-channels|search-videos|login|signup)?"),
+                                        regexMatcher(HttpMethod.GET, "^/error"),
+                                        regexMatcher(HttpMethod.GET, "/unauthenticated"))
                                 .permitAll()
                                 .requestMatchers(
                                         antMatcher(HttpMethod.GET, "/js/**"),
@@ -39,6 +40,9 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         antMatcher(HttpMethod.POST, "/api/videos"))
                                 .permitAll()
+                                .requestMatchers(
+                                        antMatcher(HttpMethod.GET, "/add"))
+                                .hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                 )
@@ -55,12 +59,13 @@ public class SecurityConfig {
                                         response.setStatus(HttpStatus.UNAUTHORIZED.value());
                                     } else if (request.getRequestURI().startsWith("/error")) {
                                         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+                                    }else if (request.getRequestURI().contains("/add")) {
+                                        request.getRequestDispatcher("/unauthenticated").forward(request, response);
                                     } else {
                                         response.sendRedirect(request.getContextPath() + "/login");
                                     }
                                 })
                 );
-//        @formater:on
         return http.build();
     }
 

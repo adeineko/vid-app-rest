@@ -9,4 +9,11 @@ public class IndexController {
     public String getIndexPage(){
         return "index";
     }
+
+    @GetMapping("unauthenticated")
+    public String getUnauthenticatedPage(){
+        return "unauthenticated";
+    }
+
+
 }

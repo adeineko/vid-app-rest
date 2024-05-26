@@ -29,8 +29,6 @@ async function addNewChannel() {
         const channel = await response.json()
         addChannelToHtmlTable(channel)
         trySubmitFrom()
-    } else {
-        alert('Something went wrong!') //TODO: Change
     }
 }
 
@@ -47,7 +45,13 @@ function trySubmitFrom() {
             .required(),
         date: Joi.date()
             .default(Date.now)
-            .required(),
+            .max('now')
+            .required()
+            .messages({
+                'date.base': 'Invalid date format',
+                'date.max': 'Date cannot be in the future',
+                'any.required': 'Date is required'
+            }),
         subscribers: Joi.number()
             .positive()
             .required()
@@ -62,10 +66,25 @@ function trySubmitFrom() {
     })
     if (validationResult.error) {
         for (const errorDetail of validationResult.error.details) {
-            console.log('DETAIL:' + errorDetail.message)
+            const successContainer = document.getElementById('successContainer')
+            successContainer.style.display = 'none'
+            const errorMessages = validationResult.error.details.map(detail => detail.message)
+            const errorContainer = document.getElementById('alert-container')
+            errorContainer.innerHTML = errorMessages.join('<br>')
+            errorContainer.style.display = 'block'
         }
+    } else {
+        const successContainer = document.getElementById('successContainer')
+        successContainer.innerHTML = 'Validation successful!'
+        successContainer.style.display = 'block'
+
+        const errorContainer = document.getElementById('alert-container')
+        errorContainer.innerHTML = ''
+        errorContainer.style.display = 'none'
+
+        addNewChannel()
     }
-    addNewChannel()
+
 }
 
 addButton?.addEventListener('click', addButtonClicked)

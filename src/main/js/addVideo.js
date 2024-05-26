@@ -1,5 +1,5 @@
 import {addVideoToHtmlTable} from './videos.js'
-import {showAlert} from './site.js'
+import * as Joi from 'joi'
 
 const titleInput = document.getElementById('titleInput')
 const viewsInput = document.getElementById('viewsInput')
@@ -26,14 +26,64 @@ async function addNewVideo() {
          * @type {{id: number, title: string, views: number, link: string, genre: VideoGenre}}
          */
         const video = await response.json()
-        showAlert('Video added successfully', 'success')
         addVideoToHtmlTable(video)
-    } else {
-        showAlert('Failed to add video', 'error')
     }
 }
 
-addButton?.addEventListener('click', addNewVideo)
+function addButtonClicked(event) {
+    event.preventDefault()
+    trySubmitFrom()
+}
+
+function trySubmitFrom() {
+    const schema = Joi.object({
+        title: Joi.string()
+            .min(3)
+            .max(30)
+            .required(),
+        views: Joi.number()
+            .positive()
+            .required(),
+        link: Joi.string()
+            .min(10)
+            .max(50)
+            .required(),
+        genre: Joi.required()
+    })
+    const videoObject = {
+        title: titleInput.value,
+        views: viewsInput.value,
+        link: linkInput.value,
+        genre: genreInput.value
+    }
+    const validationResult = schema.validate(videoObject, {
+        abortEarly: false
+    })
+    if (validationResult.error) {
+        for (const errorDetail of validationResult.error.details) {
+            for (const errorDetail of validationResult.error.details) {
+                const successContainer = document.getElementById('successContainer')
+                successContainer.style.display = 'none'
+                const errorMessages = validationResult.error.details.map(detail => detail.message)
+                const errorContainer = document.getElementById('alert-container')
+                errorContainer.innerHTML = errorMessages.join('<br>')
+                errorContainer.style.display = 'block'
+            }
+        }
+    } else {
+        const successContainer = document.getElementById('successContainer')
+        successContainer.innerHTML = 'Validation successful!'
+        successContainer.style.display = 'block'
+
+        const errorContainer = document.getElementById('alert-container')
+        errorContainer.innerHTML = ''
+        errorContainer.style.display = 'none'
+
+        addNewVideo()
+    }
+}
+
+addButton?.addEventListener('click', addButtonClicked)
 
 async function loadGenres() {
     const response = await fetch('/api/videos/genres',

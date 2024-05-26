@@ -10,8 +10,8 @@
 <!-- Navbar Fragment -->
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<div class="container">
-    <form>
+<section class="container">
+    <form id="video-form">
         <div class="mb-3">
             <label for="titleInput" class="form-label">Title:</label>
             <input type="text" id="titleInput" name="title" class="form-control" required>
@@ -34,8 +34,12 @@
         </div>
         <button type="submit" class="btn btn-outline-dark" id="addButton">Add video</button>
     </form>
-    <div id="alert-container"></div>
-</div>
+
+    <div class="mb-3">
+        <div id="alert-container" style="display: none"></div>
+        <div id="successContainer" style="display: none;"></div>
+    </div>
+</section>
 <!-- Footer Fragment -->
 <div th:replace="~{fragments/footer :: footer}"></div>
 

@@ -3,6 +3,8 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 body {
+  overflow-x: scroll;
+  overflow-y: scroll;
   font-family: Arial, sans-serif;
 }
 
@@ -64,18 +66,19 @@ body {
   }
 }
 
-.alert {
-  display: none;
-  padding: $alert-padding;
-  margin-top: 20px;
-  border-radius: $alert-border-radius;
-  color: #fff;
 
-  &.success {
-    background-color: $primary-color;
-  }
+#alert-container {
+  color: white;
+  background-color: red;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
 
-  &.error {
-    background-color: $error-color;
-  }
+#successContainer {
+  color: white;
+  background-color: green;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
