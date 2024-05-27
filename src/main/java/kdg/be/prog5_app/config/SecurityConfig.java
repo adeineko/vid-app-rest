@@ -68,7 +68,13 @@ public class SecurityConfig {
                                         response.sendRedirect(request.getContextPath() + "/login");
                                     }
                                 })
-                );
+                ).logout(logout ->
+                        logout
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login?logout")
+                                .invalidateHttpSession(true)
+                                .deleteCookies("JSESSIONID")
+                                .permitAll());
         return http.build();
     }
 

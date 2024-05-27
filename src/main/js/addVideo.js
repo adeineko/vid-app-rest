@@ -6,6 +6,7 @@ const viewsInput = document.getElementById('viewsInput')
 const linkInput = document.getElementById('linkInput')
 const genreInput = document.getElementById('genreInput')
 const addButton = document.getElementById('addButton')
+const form = document.getElementById('form')
 
 async function addNewVideo() {
   const response = await fetch('/api/videos', {
@@ -76,6 +77,7 @@ function trySubmitFrom() {
     errorContainer.style.display = 'none'
 
     addNewVideo()
+    form.reset()
   }
 }
 

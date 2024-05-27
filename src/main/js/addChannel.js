@@ -6,6 +6,7 @@ const nameInput = document.getElementById('nameInput')
 const dateInput = document.getElementById('dateInput')
 const subscribersInput = document.getElementById('subscribersInput')
 const addButton = document.getElementById('addButton')
+const form = document.getElementById('form')
 
 async function addNewChannel() {
 
@@ -82,6 +83,7 @@ function trySubmitFrom() {
     errorContainer.style.display = 'none'
 
     addNewChannel()
+    form.reset()
   }
 
 }
