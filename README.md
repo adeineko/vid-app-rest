@@ -215,7 +215,8 @@ Response file saved.
 > 
 ### Week 8
 **Code coverage**
-![Screenshot](Screenshot.png)
+![Screenshot](img/Screenshot1.png)
+![Screenshot](img/Screenshot2.png)
 ### Week 11
 **Bootstrap icon**
 >[Video page](http://localhost:8080/videos) - Add video button
