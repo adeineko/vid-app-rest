@@ -1,10 +1,7 @@
 import * as Joi from 'joi'
 
 const signUpButton = document.getElementById('signUpButton')
-const signUpForm = document.getElementById('signUpForm')
 const successMessage = document.getElementById('successContainer')
-const failedContainer = document.getElementById('failedContainer')
-
 const username = document.getElementById('username')
 const password = document.getElementById('password')
 

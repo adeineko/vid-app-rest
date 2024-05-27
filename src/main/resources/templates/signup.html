@@ -21,24 +21,25 @@
     </div>
     <form id="signUpForm">
         <div class="pb-3">
-            <input id="username" name="username" type="text" placeholder="Username" class="form-control" required>
+            <input id="username" name="username" type="text" placeholder="Username (min 3 chars)" class="form-control">
         </div>
 
         <div class="pb-3">
-            <input id="password" name="password" type="password" placeholder="Create password" class="form-control"
-                   required minlength="6" maxlength="10"/>
+            <input id="password" name="password" type="password" placeholder="Create password (min 6 chars)" class="form-control"/>
+        </div>
+
+        <div class="pb-3">
+            <input type="checkbox" id="checkBoxShowHide">Show Password
         </div>
 
         <div class="pb-3">
             <button type="submit" class="btn btn-primary" id="signUpButton">Signup</button>
         </div>
-        <div class="form-link">
+    </form>
+    <div class="form-link">
             <span>Already have an account? <a class="link login-link"
                                               onclick="window.location='login';">Login</a></span>
-        </div>
-    </form>
-
-
+    </div>
 </main>
 </body>
 </html>

@@ -74,7 +74,7 @@ function trySubmitFrom() {
 
   } else {
     const successContainer = document.getElementById('successContainer')
-    successContainer.innerHTML = 'Validation successful!'
+    successContainer.innerHTML = 'Added successfully!'
     successContainer.style.display = 'block'
 
     const errorContainer = document.getElementById('alert-container')

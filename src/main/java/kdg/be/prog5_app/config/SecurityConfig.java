@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
                         antMatcher(HttpMethod.POST, "/api/videos/**"), // Disable specifically for the client application
                         antMatcher(HttpMethod.DELETE, "/api/comments/**"), // Disable specifically for ts
-                        antMatcher(HttpMethod.POST, "/api/signup/**") // Disable specifically for ts
+                        antMatcher(HttpMethod.POST, "/api/signup/**")
                 ))
                 .formLogin(formLogin ->
                         formLogin.loginPage("/login")
@@ -61,6 +61,8 @@ public class SecurityConfig {
                                     } else if (request.getRequestURI().startsWith("/error")) {
                                         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
                                     } else if (request.getRequestURI().contains("/add")) {
+                                        request.getRequestDispatcher("/unauthenticated").forward(request, response);
+                                    } else if (request.getUserPrincipal() == null) {
                                         request.getRequestDispatcher("/unauthenticated").forward(request, response);
                                     } else {
                                         response.sendRedirect(request.getContextPath() + "/login");
