@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,4 +52,31 @@ class ChannelRepositoryTest {
         assertThrows(ConstraintViolationException.class, executable);
     }
 
+    @Test
+    public void getChannelsByNameLike_ShouldReturnMatchingChannels() {
+        // Arrange
+        String searchTerm = "Beyond";
+
+        // Act
+        List<Channel> channels = channelRepository.getChannelsByNameLike("%" + searchTerm + "%");
+
+        // Assert
+        assertEquals(1, channels.size());
+        Channel channel = channels.get(0);
+        assertEquals("Beyond Fireship", channel.getName());
+        assertEquals(LocalDate.of(2022, 9, 4), channel.getDate());
+        assertEquals(329000, channel.getSubscribers());
+    }
+
+    @Test
+    public void getChannelsByNameLike_ShouldReturnEmptyListForNonMatchingSearchTerm() {
+        // Arrange
+        String searchTerm = "NonExistentChannelName";
+
+        // Act
+        List<Channel> channels = channelRepository.getChannelsByNameLike("%" + searchTerm + "%");
+
+        // Assert
+        assertEquals(0, channels.size());
+    }
 }

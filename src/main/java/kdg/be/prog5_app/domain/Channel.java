@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "channel")
@@ -34,7 +33,7 @@ public class Channel {
         this.subscribers = subscribers;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

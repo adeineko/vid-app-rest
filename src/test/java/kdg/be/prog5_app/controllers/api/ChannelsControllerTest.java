@@ -66,7 +66,7 @@ class ChannelsControllerTest {
     @Test
     public void getVideosOfChannelShouldReturnNoContentIfNoVideosForChannel() throws Exception {
         mockMvc.perform(
-                        get("/api/channels/{channelId}/videos", 2)
+                        get("/api/channels/{channelId}/videos", 5)
                                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }

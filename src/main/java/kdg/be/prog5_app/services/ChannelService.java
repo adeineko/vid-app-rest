@@ -6,6 +6,7 @@ import kdg.be.prog5_app.repositories.ChannelVideoRepository;
 import kdg.be.prog5_app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class ChannelService {
     private final ChannelVideoRepository channelVideoRepository;
 
     @Autowired
-    public ChannelService(ChannelRepository channelRepository, ChannelVideoRepository channelVideoRepository, UserRepository userRepository) {
+    public ChannelService(ChannelRepository channelRepository, ChannelVideoRepository channelVideoRepository) {
         this.channelRepository = channelRepository;
         this.channelVideoRepository = channelVideoRepository;
     }
@@ -53,11 +54,13 @@ public class ChannelService {
         return channelRepository.findByIdWithVideos(channelId).orElse(null);
     }
 
+    @CacheEvict(value = "search-channel", allEntries = true)
     public Channel addChannel(String name, LocalDate date, int subscribers) {
         var channel = new Channel(name, date, subscribers);
         return channelRepository.save(channel);
     }
 
+    @CacheEvict(value = "search-channel", allEntries = true)
     public boolean changeChannelNameAndSubscribers(long channelId, String newName, int newSubscribers) {
         var channel = channelRepository.findById(channelId).orElse(null);
         if (channel == null) {
@@ -69,7 +72,7 @@ public class ChannelService {
         return true;
     }
 
-//    @Cacheable()
+    @Cacheable("search-channel")
     public List<Channel> searchChannelsByName(
             String searchTerm) {
         return channelRepository

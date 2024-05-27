@@ -40,25 +40,27 @@ class ChannelControllerTest {
 
     @Test
     void getChannelsPageShouldReturnChannelsViewWithChannelsData() throws Exception {
-        List<Channel> channels = channelRepository.findAll();
+        List<Channel> channels = Arrays.asList(
+                new Channel("Beyond Fireship", LocalDate.parse("2022-09-04"), 329000),
+                new Channel("Tech Acad", LocalDate.parse("2017-03-28"), 75000),
+                new Channel("Coding Wizards", LocalDate.parse("2023-01-15"), 480000),
+                new Channel("Data Science Insights", LocalDate.parse("2020-08-20"), 105000),
+                new Channel("Game Dev Hub", LocalDate.parse("2018-12-10"), 210000),
+                new Channel("AI Explorers", LocalDate.parse("2021-06-28"), 145000)
+        );
 
-        Channel channel1 = channels.stream()
-                .filter(channel -> "Beyond Fireship".equals(channel.getName()))
-                .findFirst()
-                .orElseThrow(() -> new AssertionError("Expected channel not found: Beyond Fireship"));
-
-        Channel channel2 = channels.stream()
-                .filter(channel -> "Tech Acad".equals(channel.getName()))
-                .findFirst()
-                .orElseThrow(() -> new AssertionError("Expected channel not found: Tech Acad"));
-
+        // Perform the mockMvc request
         mockMvc.perform(get("/channels"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("channel/Channels"))
-                .andExpect(model().attribute("channels", hasSize(2)))
+                .andExpect(model().attribute("channels", hasSize(6)))
                 .andExpect(model().attribute("channels", containsInAnyOrder(
-                        samePropertyValuesAs(channel1, "id", "videos"),
-                        samePropertyValuesAs(channel2, "id", "videos")
+                        samePropertyValuesAs(channels.get(0), "id", "videos"),
+                        samePropertyValuesAs(channels.get(1), "id", "videos"),
+                        samePropertyValuesAs(channels.get(2), "id", "videos"),
+                        samePropertyValuesAs(channels.get(3), "id", "videos"),
+                        samePropertyValuesAs(channels.get(4), "id", "videos"),
+                        samePropertyValuesAs(channels.get(5), "id", "videos")
                 )));
     }
 
