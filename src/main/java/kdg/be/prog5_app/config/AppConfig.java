@@ -1,6 +1,7 @@
 package kdg.be.prog5_app.config;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableAsync
+@EnableCaching
 public class AppConfig {
     @Bean
     public ModelMapper modelMapper() {

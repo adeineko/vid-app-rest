@@ -1,10 +1,8 @@
 package kdg.be.prog5_app.repositories;
 
 import kdg.be.prog5_app.domain.Channel;
-import kdg.be.prog5_app.domain.Video;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,5 +22,5 @@ public interface ChannelRepository extends JpaRepository<Channel, Long> {
             """)
     Optional<Channel> findByIdWithVideos(long channelId);
 
-    List<Channel> getChannelsByNameLike( String searchTerm);
+    List<Channel> getChannelsByNameLikeIgnoreCase( String searchTerm);
 }

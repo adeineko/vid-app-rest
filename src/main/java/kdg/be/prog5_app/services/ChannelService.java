@@ -76,7 +76,7 @@ public class ChannelService {
     public List<Channel> searchChannelsByName(
             String searchTerm) {
         return channelRepository
-                .getChannelsByNameLike(
+                .getChannelsByNameLikeIgnoreCase(
                         "%" + searchTerm + "%");
     }
 
@@ -85,13 +85,19 @@ public class ChannelService {
     @CacheEvict(value = "search-channel", allEntries = true)
     public void processChannelsCsv(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
-        String line = scanner.nextLine();
-        //var columns = line.split(","); repo create channel ...
-        LOGGER.info(line);
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-//            e.printStackTrace();
+            // Thread.sleep(1000);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                var columns = line.split(",");
+                Channel channel = new Channel();
+                channel.setName(columns[0].trim());
+                channel.setDate(LocalDate.parse(columns[1].trim()));
+                channel.setSubscribers(Integer.parseInt(columns[2].trim()));
+                channelRepository.save(channel);
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error processing line: " + e);
         }
     }
 }
