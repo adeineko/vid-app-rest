@@ -16,7 +16,7 @@ async function searchChannels() {
       tableBody.innerHTML += `
                 <tr>
                     <td>${channel.name}</td>
-                    <td><a href="/channel/${channel.id}">Details</a></td>
+                    <td><a href="/channels/${channel.id}">Details</a></td>
                 </tr>
             `
     }

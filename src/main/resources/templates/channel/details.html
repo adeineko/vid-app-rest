@@ -28,12 +28,12 @@
                 <td th:text="${channel.id}"></td>
                 <td>
                     <label for="nameTextArea"></label>
-                        <textarea th:text="${channel.name}" id="nameTextArea" rows="1"></textarea>
+                    <textarea th:text="${channel.name}" id="nameTextArea" rows="1"></textarea>
                 </td>
                 <td th:text="${channel.date}"></td>
                 <td>
                     <label for="subscribersTextArea"></label>
-                        <textarea th:text="${channel.subscribers}" id="subscribersTextArea" rows="1"></textarea>
+                    <textarea th:text="${channel.subscribers}" id="subscribersTextArea" rows="1"></textarea>
                 </td>
             </tr>
             </tbody>
@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-outline-dark" sec:authorize="hasRole('ROLE_ADMIN')">Delete</button>
+    <button type="button" class="btn btn-outline-dark" sec:authorize="hasRole('ROLE_ADMIN')"><i class="bi bi-trash3"></i>Delete</button>
 
 </div>
 <!-- Footer Fragment -->

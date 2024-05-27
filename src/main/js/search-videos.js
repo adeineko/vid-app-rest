@@ -16,7 +16,7 @@ async function searchVideos() {
       tableBody.innerHTML += `
                 <tr>
                     <td>${video.title}</td>
-                    <td><a href="/video/${video.id}">Details</a></td>
+                    <td><a href="/videos/${video.id}">Details</a></td>
                 </tr> 
             `
     }

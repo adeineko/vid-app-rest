@@ -34,7 +34,7 @@ information.
 
 3. Run the application:
 
-> java -jar path/to/.jar fully.qualified.package.Application
+> java -jar build/libs/prog5_app-0.0.1-SNAPSHOT.jar fully.qualified.package.Application
 
 4. Run tests:
 
