@@ -10,9 +10,9 @@ document.body.appendChild(renderer.domElement)
 
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 
-const material1 = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-const material2 = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const material3 = new THREE.MeshBasicMaterial({ color: 0x0000ff })
+const material1 = new THREE.MeshBasicMaterial({color: 0x00ff00})
+const material2 = new THREE.MeshBasicMaterial({color: 0xff0000})
+const material3 = new THREE.MeshBasicMaterial({color: 0x0000ff})
 
 const cube1 = new THREE.Mesh(geometry, material1)
 const cube2 = new THREE.Mesh(geometry, material2)
