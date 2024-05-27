@@ -23,6 +23,6 @@ public interface VideoRepository extends JpaRepository<Video, Long> {
             where video.id = :videoId
             """)
     Optional<Video> findByIdWithChannels(long videoId);
-    List<Video> getVideosByTitleLike(String searchTerm);
+    List<Video> getVideosByTitleLikeIgnoreCase(String searchTerm);
 
 }

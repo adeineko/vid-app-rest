@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -48,7 +47,8 @@ public class SecurityConfig {
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
                         antMatcher(HttpMethod.POST, "/api/videos/**"), // Disable specifically for the client application
-                       antMatcher(HttpMethod.DELETE, "/api/comments/**") // Disable specifically for ts
+                        antMatcher(HttpMethod.DELETE, "/api/comments/**"), // Disable specifically for ts
+                        antMatcher(HttpMethod.POST, "/api/signup/**") // Disable specifically for ts
                 ))
                 .formLogin(formLogin ->
                         formLogin.loginPage("/login")
@@ -60,7 +60,7 @@ public class SecurityConfig {
                                         response.setStatus(HttpStatus.UNAUTHORIZED.value());
                                     } else if (request.getRequestURI().startsWith("/error")) {
                                         response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-                                    }else if (request.getRequestURI().contains("/add")) {
+                                    } else if (request.getRequestURI().contains("/add")) {
                                         request.getRequestDispatcher("/unauthenticated").forward(request, response);
                                     } else {
                                         response.sendRedirect(request.getContextPath() + "/login");

@@ -24,8 +24,8 @@ async function addNewChannel() {
   })
   if (response.status === 201) {
     /**
-         * @type {{id: number, name: string, date: localDate, subscribers: number}}
-         */
+     * @type {{id: number, name: string, date: localDate, subscribers: number}}
+     */
     const channel = await response.json()
     addChannelToHtmlTable(channel)
     trySubmitFrom()
@@ -65,14 +65,13 @@ function trySubmitFrom() {
     abortEarly: false
   })
   if (validationResult.error) {
-    for (const errorDetail of validationResult.error.details) {
-      const successContainer = document.getElementById('successContainer')
-      successContainer.style.display = 'none'
-      const errorMessages = validationResult.error.details.map(detail => detail.message)
-      const errorContainer = document.getElementById('alert-container')
-      errorContainer.innerHTML = errorMessages.join('<br>')
-      errorContainer.style.display = 'block'
-    }
+    const successContainer = document.getElementById('successContainer')
+    successContainer.style.display = 'none'
+    const errorMessages = validationResult.error.details.map(detail => detail.message)
+    const errorContainer = document.getElementById('alert-container')
+    errorContainer.innerHTML = errorMessages.join('<br>')
+    errorContainer.style.display = 'block'
+
   } else {
     const successContainer = document.getElementById('successContainer')
     successContainer.innerHTML = 'Validation successful!'

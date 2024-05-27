@@ -2,6 +2,7 @@ package kdg.be.prog5_app.controllers.api;
 
 import jakarta.validation.Valid;
 import kdg.be.prog5_app.controllers.api.dto.UserDto;
+import kdg.be.prog5_app.domain.UserRole;
 import kdg.be.prog5_app.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class UsersController {
     @PostMapping
     ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto) {
         String encryptedPassword = passwordEncoder.encode(userDto.getPassword());
-
+        userDto.setRole(UserRole.USER);
         var createdUser = userService.addUser(
                 userDto.getUsername(),
                 encryptedPassword,

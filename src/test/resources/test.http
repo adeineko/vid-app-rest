@@ -77,13 +77,13 @@ Cookie:JSESSIONID=01AED759216BCA55B703E52FCC35CEDE
 
 ### API: create user
 # @no-redirect
-POST http://localhost:8080/api/signup/
+POST http://localhost:8080/api/signup
 Accept: application/json
 Content-Type: application/json
-Cookie: JSESSIONID=477C538261DF1DA067B682853CADE6E7
-X-CSRF-TOKEN:34y3_w8sfpsvDIXHobvQt8bxigVPtBFXVgIe1TekaPGkQgpB6byEzD8aSvkCOrzyw5bkgfKVp2R81iV6NzMt4QaQWsiQdDwi
+Cookie: JSESSIONID=0491672A80A578EE177E0830217DF825
 
 {
   "username": "anna",
-  "password": "123456"
+  "password": "123456789",
+  "role": "USER"
 }

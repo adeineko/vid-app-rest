@@ -22,6 +22,7 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    @Transactional
     public User addUser(String username, String password, UserRole role) {
         User user = new User(username, password, role);
         return userRepository.save(user);

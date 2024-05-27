@@ -3,7 +3,6 @@ package kdg.be.prog5_app.services;
 import kdg.be.prog5_app.domain.Channel;
 import kdg.be.prog5_app.repositories.ChannelRepository;
 import kdg.be.prog5_app.repositories.ChannelVideoRepository;
-import kdg.be.prog5_app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -72,7 +71,7 @@ public class ChannelService {
         return true;
     }
 
-    @Cacheable("search-channel")
+    @Cacheable("search-channels")
     public List<Channel> searchChannelsByName(
             String searchTerm) {
         return channelRepository

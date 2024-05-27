@@ -1,8 +1,5 @@
 package kdg.be.prog5_app.controllers.api.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import kdg.be.prog5_app.domain.UserRole;
 
 public class UserDto {
