@@ -8,7 +8,7 @@
 <body>
 <!-- Navbar Fragment -->
 <div th:replace="~{fragments/navbar :: navbar(page = 'comments')}"></div>
-<div class="container mt-2">
+<main class="container">
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
@@ -16,6 +16,7 @@
                 <th>Id</th>
                 <th>Text</th>
                 <th>Likes</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody id="commentTableBody">
@@ -41,9 +42,9 @@
     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{comments/add}" class="btn btn-outline-dark" tabindex="-1"
        role="button">
         <i class="bi bi-plus"></i>Add Comment</a>
-</div>
+</main>
 
 <!-- Footer Fragment -->
-<div th:replace="~{fragments/footer :: footer}"></div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
