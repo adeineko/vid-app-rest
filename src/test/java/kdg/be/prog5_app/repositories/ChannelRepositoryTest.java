@@ -58,7 +58,7 @@ class ChannelRepositoryTest {
         String searchTerm = "Beyond";
 
         // Act
-        List<Channel> channels = channelRepository.getChannelsByNameLike("%" + searchTerm + "%");
+        List<Channel> channels = channelRepository.getChannelsByNameLikeIgnoreCase("%" + searchTerm + "%");
 
         // Assert
         assertEquals(1, channels.size());
@@ -74,7 +74,7 @@ class ChannelRepositoryTest {
         String searchTerm = "NonExistentChannelName";
 
         // Act
-        List<Channel> channels = channelRepository.getChannelsByNameLike("%" + searchTerm + "%");
+        List<Channel> channels = channelRepository.getChannelsByNameLikeIgnoreCase("%" + searchTerm + "%");
 
         // Assert
         assertEquals(0, channels.size());

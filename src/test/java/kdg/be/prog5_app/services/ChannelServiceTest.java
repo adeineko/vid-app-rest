@@ -38,7 +38,7 @@ class ChannelServiceTest {
     }
 
     @Test
-    void changeChannelAndSubscribersNameShouldReturnTrueForExistingIssueAndUpdateSaidIssue() {
+    void changeChannelAndSubscribersNameShouldReturnTrueForExistingChannel() {
         // Arrange
         var createdChannel = channelRepository.save(new Channel("Beyond Fireship", LocalDate.parse("2022-09-04"), 345266));
 
@@ -54,4 +54,19 @@ class ChannelServiceTest {
         // (cleanup)
         channelRepository.deleteById(createdChannel.getId());
     }
+
+    @Test
+    void changeChannelAndSubscribersNameShouldReturnFalseForNonExistingChannel() {
+        // Arrange
+
+        // Act
+        var result = channelService.changeChannelNameAndSubscribers(
+                9999, "New name", 54);
+
+        // Assert
+        assertFalse(result);
+        assertTrue(channelRepository.findById(9999L).isEmpty());
+    }
+
+
 }

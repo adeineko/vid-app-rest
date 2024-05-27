@@ -178,9 +178,10 @@ Response file saved.
 
 > **Unauthenticated users**
 >
-> Can see only list of channels and Videos,
+> Can see  list of channels and Videos with its details,
 > no comments. Cannot access details about channels/comments
->
+>Cannot add channels, comments. Cannot delete anything
+> 
 > **Authenticated user**
 >
 > Can access Channels, Comments, Videos and detailed pages of it, but cannot add/update/delete
