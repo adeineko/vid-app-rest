@@ -6,7 +6,7 @@ An application to manage data about your channels, including videos, comments, a
 
 **Anna Deineko**
 
-Email: [anna.deineko@student.kdg.be](mailto:anna.deineko@student.kdg.be)
+Email: [adeineko10@gmail.com](mailto:anna.deineko@student.kdg.be)
 
 ## Table of Contents
 
