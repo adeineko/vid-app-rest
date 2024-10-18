@@ -18,9 +18,6 @@ Email: [adeineko10@gmail.com](mailto:anna.deineko@student.kdg.be)
     - [Building the Application](#building-the-application)
     - [Running the Application](#running-the-application)
     - [Running Tests](#running-tests)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## About
 
@@ -72,10 +69,3 @@ To run the tests with detailed information, execute:
 ```bash
 ./gradlew clean test --info
 ```
-
-## Contact
-
-For any questions or feedback, feel free to reach out:
-
-- **Anna Deineko**
-- Email: [anna.deineko@student.kdg.be](mailto:anna.deineko@student.kdg.be)
